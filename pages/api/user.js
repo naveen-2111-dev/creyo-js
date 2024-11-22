@@ -2,39 +2,37 @@ import ConnectDb from "@/lib/connect";
 import bcrypt from "bcrypt";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
-  }
+  if (req.method === "POST") {
+    const { Firstname, Lastname, Email, Password, Country } = req.body;
 
-  try {
-    const { firstname, lastname, email, password, country } = req.body;
-    if (!firstname || !lastname || !email || !password || !country) {
+    if (!Firstname || !Lastname || !Email || !Password || !Country) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
-    const signupCollection = await ConnectDb();
+    try {
+      const hashedPassword = await bcrypt.hash(Password, 10);
+      const collection = await ConnectDb();
+      const existingUser = await collection.findOne({ email: Email });
 
-    const existingUser = await signupCollection.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({ message: "User already exists." });
+      if (existingUser) {
+        return res.status(409).json({ message: "Email already exists." });
+      }
+
+      const newUser = {
+        firstname: Firstname,
+        lastname: Lastname,
+        email: Email,
+        password: hashedPassword,
+        country: Country,
+      };
+
+      await collection.insertOne(newUser);
+      return res.status(201).json({ message: "User successfully created." });
+    } catch (err) {
+      return res.status(500).json({ message: "Internal server error." });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = {
-      firstname,
-      lastname,
-      email,
-      password: hashedPassword,
-      country,
-      createdAt: new Date(),
-    };
-
-    await signupCollection.insertOne(newUser);
-
-    return res.status(201).json({ message: "User added successfully." });
-  } catch (error) {
-    console.error("Error in POST handler:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
