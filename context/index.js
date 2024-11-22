@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppWrapper({children}){
-    let [state,setState] = useState("hello");
+    let [state,setState] = useState("Name will come");
 
     const Exporters = {
         state,
