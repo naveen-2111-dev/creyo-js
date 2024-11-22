@@ -8,7 +8,7 @@ export default async function signupUser(
   try {
     const UserObj = { Firstname, Lastname, Email, Password, Country };
 
-    const response = await fetch("/api/user", {
+    const response = await fetch("api/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
