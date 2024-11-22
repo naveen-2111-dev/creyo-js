@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  let [state, setState] = useState("Name will come");
+  let [state, setState] = useState("hello");
 
   const Signup = async ({ Firstname, Lastname, Email, Password, Country }) => {
     try {
