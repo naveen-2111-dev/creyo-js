@@ -1,0 +1,60 @@
+/* Global Styles */
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+
+  }
+  
+  /* Container for the page */
+  .explore-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #001e2b;
+    padding: 20px;
+  }
+  
+  /* Heading style */
+  .heading {
+    font-size: 3rem;
+    color: #47A248; /* MongoDB Green */
+    margin-bottom: 1rem;
+    font-size: 3rem; /* Adjust size as needed */
+    font-weight: bold; /* Make the text bold if desired */
+    background: linear-gradient(to right, #AEFF06, #01ED63);
+    -webkit-background-clip: text; /* For webkit browsers (Chrome, Safari) */
+    color: transparent; /* Make the text color transparent to show the gradient */
+    display: inline; /* Make the element behave like inline */
+  }
+  
+  /* Paragraph Style */
+  .intro-text {
+    
+    font-size: 1.2rem;
+    color: #ffffff;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    
+  }
+  
+  /* Button Style */
+  .join-btn {
+    font-size: 1.1rem;
+    background-color: #47A248; /* MongoDB Green */
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .join-btn:hover {
+    background-color: #005f41; /* Dark Green */
+  }
