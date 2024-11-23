@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import signupUser from "@/db/SignUp";
+import "tailwindcss/tailwind.css";
+import Link from "next/link";
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -20,29 +22,21 @@ export default function Signup() {
     }
 
     try {
-      const result = await signupUser(
-        firstName,
-        lastName,
-        email,
-        password,
-        country
-      );
+      await signupUser(firstName, lastName, email, password, country);
 
-      console.log(result);
       router.push("/login");
     } catch (error) {
       setError("Signup failed. Please try again.");
     }
   };
-
   return (
-    <div style={styles.container}>
-      <div style={styles.formContainer}>
-        <h2 style={styles.heading}>Sign Up</h2>
-        {error && <p style={styles.error}>{error}</p>}
+    <div className="flex justify-center items-center h-screen bg-black text-white p-4">
+      <div className="w-full max-w-md p-8 bg-white bg-opacity-10 rounded-lg shadow-lg backdrop-blur-md border border-white/30">
+        <h2 className="text-center text-xl font-semibold mb-6">Sign Up</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div style={styles.inputGroup}>
-            <label htmlFor="firstName" style={styles.label}>
+          <div className="mb-4">
+            <label htmlFor="firstName" className="block mb-2">
               First Name:
             </label>
             <input
@@ -52,12 +46,12 @@ export default function Signup() {
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter your first name"
               required
-              style={styles.input}
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
             />
           </div>
 
-          <div style={styles.inputGroup}>
-            <label htmlFor="lastName" style={styles.label}>
+          <div className="mb-4">
+            <label htmlFor="lastName" className="block mb-2">
               Last Name:
             </label>
             <input
@@ -67,12 +61,12 @@ export default function Signup() {
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Enter your last name"
               required
-              style={styles.input}
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
             />
           </div>
 
-          <div style={styles.inputGroup}>
-            <label htmlFor="email" style={styles.label}>
+          <div className="mb-4">
+            <label htmlFor="email" className="block mb-2">
               Email:
             </label>
             <input
@@ -82,12 +76,12 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              style={styles.input}
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
             />
           </div>
 
-          <div style={styles.inputGroup}>
-            <label htmlFor="password" style={styles.label}>
+          <div className="mb-4">
+            <label htmlFor="password" className="block mb-2">
               Password:
             </label>
             <input
@@ -97,12 +91,12 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
-              style={styles.input}
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
             />
           </div>
 
-          <div style={styles.inputGroup}>
-            <label htmlFor="country" style={styles.label}>
+          <div className="mb-4">
+            <label htmlFor="country" className="block mb-2">
               Country:
             </label>
             <input
@@ -112,69 +106,25 @@ export default function Signup() {
               onChange={(e) => setCountry(e.target.value)}
               placeholder="Enter your country"
               required
-              style={styles.input}
+              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
             />
           </div>
 
-          <button type="submit" style={styles.submitButton}>
+          <button
+            type="submit"
+            className="w-full p-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition font-medium"
+          >
             Sign Up
           </button>
         </form>
+
+        <p className="mt-4 text-center">
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-600 hover:underline">
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "black",
-    color: "white",
-  },
-  formContainer: {
-    width: "500px",
-    padding: "0rem 4rem 5rem 4rem",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: "8px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255, 255, 255, 0.3)",
-  },
-  heading: {
-    textAlign: "center",
-    marginBottom: "1.5rem",
-  },
-  error: {
-    color: "red",
-    marginBottom: "1rem",
-  },
-  inputGroup: {
-    marginBottom: "1rem",
-  },
-  label: {
-    display: "block",
-    marginBottom: "0.5rem",
-  },
-  input: {
-    width: "100%",
-    padding: "0.75rem",
-    backgroundColor: "#444",
-    border: "1px solid #555",
-    borderRadius: "4px",
-    color: "white",
-    fontSize: "1rem",
-  },
-  submitButton: {
-    width: "100%",
-    padding: "0.75rem",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    fontSize: "1rem",
-  },
-};
