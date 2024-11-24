@@ -106,7 +106,7 @@ export default async function POST(req, res) {
       <p>Mr/Mrs,</p>
       <p>We have received a request to reset the password for your account associated with this email address. If you did not initiate this request, please disregard this email. Your account remains secure.</p>
       <p>To proceed with resetting your password, please click the button below:</p>
-      <a href="http://localhost:3000/ResetPassword" class="reset-button" target="_blank">Reset Password</a>
+      <a href="https://creyo-get2work.vercel.app/ResetPassword" class="reset-button" target="_blank">Reset Password</a>
     </div>
     <div class="email-footer">
       <p>If you need further assistance, please do not hesitate to <a href="mailto:support@creyo.com">contact our support team</a>.</p>
