@@ -60,9 +60,9 @@ export default function LoginPage() {
                 Remember me
               </label>
             </div>
-            <a href="#" className="text-sm text-green-600 hover:underline">
+            <Link href="/Forget" className="text-green-600 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
           <button
             type="submit"
