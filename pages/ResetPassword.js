@@ -1,18 +1,21 @@
 import OtpSaver from "@/db/otp";
+import Verify from "@/db/verify";
 import { useRef, useState } from "react";
 import "tailwindcss/tailwind.css";
+import { useRouter } from "next/router";
 
 export default function ResetPage() {
   const otpRefs = useRef([]);
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [email, setemail] = useState("");
   const [sent, setSent] = useState(false);
+  const router = useRouter();
 
   const handleInput = (index, event) => {
     const { value } = event.target;
     const newOtp = [...otp];
     newOtp[index] = value;
-    setOtp(newOtp);
+    setOtp(newOtp.join(""));
 
     if (value.length === 1 && index < otpRefs.current.length - 1) {
       otpRefs.current[index + 1]?.focus();
@@ -27,13 +30,24 @@ export default function ResetPage() {
 
   const handleInputChange = (e) => {
     setemail(e.target.value);
-    console.log(e.target.value); 
+    console.log(e.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("clicked");
     await OtpSaver(email);
     setSent(!sent);
+  };
+
+  const handleVerify = async (e) => {
+    e?.preventDefault();
+
+    try {
+      await Verify(email, otp, router);
+    } catch (error) {
+      console.error("Error during OTP verification:", error);
+    }
   };
 
   return (
@@ -46,7 +60,7 @@ export default function ResetPage() {
           Enter your email address and the OTP sent to your email to verify your
           identity.
         </p>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="mb-5">
             <label htmlFor="email" className="block text-sm font-medium">
               Email Address
@@ -83,10 +97,17 @@ export default function ResetPage() {
             </div>
           </div>
           <button
-            type="submit"
+            type="button"
             className="w-full py-2 px-4 text-white font-semibold bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1"
+            onClick={async () => {
+              if (!sent) {
+                await handleSubmit(new Event("submit"));
+              } else {
+                await handleVerify(new Event("submit"));
+              }
+            }}
           >
-            {sent?"verify otp":"send otp"}
+            {sent ? "verify otp" : "send otp"}
           </button>
         </form>
         <div className="mt-6 text-sm text-center">
