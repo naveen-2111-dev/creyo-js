@@ -1,4 +1,5 @@
 import ConnectDb from "@/lib/connect";
+import transporter from "@/utils/transporter";
 import nodemailer from "nodemailer";
 
 export default async function POST(req, res) {
@@ -11,23 +12,15 @@ export default async function POST(req, res) {
     const { email } = req.body;
 
     const collection = await ConnectDb();
-    const user = await collection.findOne({ email });
+    const user = await collection.signup.findOne({ email });
     if (!user) {
       return res.status(404).json({
         message: "email not found",
       });
     }
-    const transport = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: "dev.naveen.rajan.m@gmail.com",
-        pass: process.env.APP_PASSWORD,
-      },
-    });
+    const transport = await transporter();
 
-    const info = await transport.sendMail({
+    await transport.sendMail({
       from: '"Creyo" <noreply@gmail.com>',
       to: email,
       subject: "Reset Your Password",

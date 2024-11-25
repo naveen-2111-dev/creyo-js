@@ -11,7 +11,7 @@ export default async function POST(req, res) {
   try {
     const hashedPassword = await bcrypt.hash(Password, 10);
     const collection = await ConnectDb();
-    const existingUser = await collection.findOne({ email: Email });
+    const existingUser = await collection.signup.findOne({ email: Email });
 
     if (existingUser) {
       return res.status(409).json({ message: "Email already exists." });
@@ -25,9 +25,10 @@ export default async function POST(req, res) {
       country: Country,
     };
 
-    await collection.insertOne(newUser);
+    await collection.signup.insertOne(newUser);
     return res.status(201).json({ message: "User successfully created." });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: "Internal server error." });
   }
 }
