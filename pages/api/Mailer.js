@@ -1,6 +1,5 @@
 import ConnectDb from "@/lib/connect";
 import transporter from "@/utils/transporter";
-import nodemailer from "nodemailer";
 
 export default async function POST(req, res) {
   try {

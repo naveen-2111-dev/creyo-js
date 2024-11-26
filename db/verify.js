@@ -24,6 +24,7 @@ export default async function Verify(email, otp, router) {
       body: JSON.stringify({
         otp: otp,
         verify: verifyDbOtp,
+        email: email,
       }),
     });
 
