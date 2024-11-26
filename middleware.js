@@ -8,9 +8,9 @@ export function middleware(req) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  // if (!cookie.email && req.nextUrl.pathname === "/password") {
-  //   return NextResponse.redirect(new URL("/ResetPassword", req.url));
-  // }
+  if (!cookie.email && req.nextUrl.pathname === "/password") {
+    return NextResponse.redirect(new URL("/ResetPassword", req.url));
+  }
 
   return NextResponse.next();
 }
