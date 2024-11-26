@@ -1,6 +1,6 @@
 import OtpSaver from "@/db/otp";
 import Verify from "@/db/verify";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 import { useRouter } from "next/router";
 
@@ -9,6 +9,7 @@ export default function ResetPage() {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const [email, setemail] = useState("");
   const [sent, setSent] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(300);
   const router = useRouter();
 
   const handleInput = (index, event) => {
@@ -30,14 +31,13 @@ export default function ResetPage() {
 
   const handleInputChange = (e) => {
     setemail(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("clicked");
     await OtpSaver(email);
-    setSent(!sent);
+    setSent(true);
   };
 
   const handleVerify = async (e) => {
@@ -45,9 +45,30 @@ export default function ResetPage() {
 
     try {
       await Verify(email, otp, router);
+      localStorage.setItem("email", email);
     } catch (error) {
       console.error("Error during OTP verification:", error);
     }
+  };
+
+  useEffect(() => {
+    let timer;
+    if (sent && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setSent(false);
+      setTimeLeft(300);
+    }
+
+    return () => clearInterval(timer);
+  }, [sent, timeLeft]);
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
   };
 
   return (
@@ -107,19 +128,29 @@ export default function ResetPage() {
               }
             }}
           >
-            {sent ? "verify otp" : "send otp"}
+            {sent ? "Verify OTP" : "Send OTP"}
           </button>
         </form>
         <div className="mt-6 text-sm text-center">
-          <p>
-            Didn't receive the OTP?
-            <a
-              href="/resend-otp"
-              className="font-medium text-green-600 hover:text-green-500"
-            >
-              Resend OTP
-            </a>
-          </p>
+          {sent ? (
+            <p>
+              You can resend the OTP in{" "}
+              <span className="font-medium text-green-600">
+                {formatTime(timeLeft)}
+              </span>
+            </p>
+          ) : (
+            <p>
+              Didn't receive the OTP?{" "}
+              <a
+                href="/resend-otp"
+                className="font-medium text-green-600 hover:text-green-500"
+                onClick={handleSubmit}
+              >
+                Resend OTP
+              </a>
+            </p>
+          )}
         </div>
       </div>
     </div>

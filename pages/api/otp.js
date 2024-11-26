@@ -19,6 +19,12 @@ export default async function POST(req, res) {
         message: "not an user",
       });
     }
+    const OtpUser = await db.otp.findOne({ userid: email });
+    if (OtpUser) {
+      return res.status(401).json({
+        message: "otp alredy exists",
+      });
+    }
 
     const data = await db.otp.insertOne({
       userid: email,
