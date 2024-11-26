@@ -8,7 +8,7 @@ export default async function POST(req, res) {
     }
 
     const collection = await ConnectDb();
-    const user = await collection.findOne({ email });
+    const user = await collection.signup.findOne({ email });
 
     if (!user) {
       return res.status(404).json({

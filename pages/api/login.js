@@ -14,7 +14,7 @@ export default async function POST(req, res) {
     }
 
     const db = await ConnectDb();
-    const User = await db.findOne({ email });
+    const User = await db.signup.findOne({ email });
     if (!User) {
       return res.status(404).json({
         message: "user not found",
