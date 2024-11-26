@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 export default function Otpgenerator() {
   const digits =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
   let otp = "";
   for (let index = 0; index < 6; index++) {
     otp += digits[Math.floor(Math.random() * digits.length)];
