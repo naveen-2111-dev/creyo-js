@@ -14,7 +14,7 @@ export default function HeroPage() {
       } catch (error) {
         console.log(error);
       }
-    };
+    };a
     Decode();
   }, []);
 
