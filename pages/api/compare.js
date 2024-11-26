@@ -7,12 +7,10 @@ export default function POST(req, res) {
         message: "all fields are empty",
       });
     }
-
     if (verify === otp) {
-      return true;
+      return res.status(200).json({ success: true });
     }
-
-    return false;
+    return res.status(401).json({ success: false });
   } catch (err) {
     console.log(err);
   }
