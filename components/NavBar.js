@@ -11,47 +11,47 @@ export default function Navbar() {
     setProfileCardVisible(!isProfileCardVisible);
   };
 
-    const [mail, setMail] = useState("");
-    const [name, setName] = useState("");
-    useEffect(() => {
-      const Decode = () => {
-        try {
-          const token = localStorage.getItem("AccessToken");
-          const decode = jwtDecode(token);
-          setMail(decode.email);
-        } catch (error) {
-          console.log(error);
-        }
-      }; 
-      Decode();
-    }, []);
+  const [mail, setMail] = useState("");
+  const [name, setName] = useState("");
+  useEffect(() => {
+    const Decode = () => {
+      try {
+        const token = localStorage.getItem("AccessToken");
+        const decode = jwtDecode(token);
+        setMail(decode.email);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    Decode();
+  }, []);
 
-    useEffect(() => {
-      const response = async () => {
-        try {
-          const res = await fetch("api/welcome", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({
-              email: mail,
-            }),
-          });
+  useEffect(() => {
+    const response = async () => {
+      try {
+        const res = await fetch("api/welcome", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: mail,
+          }),
+        });
 
-          const data = await res.json();
-          setName(data.data.name);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+        const data = await res.json();
+        setName(data.data.name);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-      response();
-    }, [mail]);
-  
+    response();
+  }, [mail]);
+
   return (
 
-    <nav className="bg-gradient-to-r from-green-600 to-green-800 w-full mx-auto p-5 px-10 flex items-center justify-between relative">
+    <nav className="bg-gradient-to-r from-black to-gray-900 w-full mx-auto p-5 px-10 flex items-center justify-between relative">
       {/* Logo */}
       <div className="text-white text-xl font-bold">
         <Link href="/">CREYO</Link>
@@ -174,7 +174,10 @@ export default function Navbar() {
                 </svg>
                 Working Status
               </div>
-              <div className="flex items-center text-left px-3 py-2 text-sm hover:bg-green-500 hover:text-white rounded-lg cursor-pointer">
+              <Link
+                href="/messages"
+                className="flex items-center text-left px-3 py-2 text-sm hover:bg-green-500 hover:text-white rounded-lg cursor-pointer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 mr-2 text-gray-600"
@@ -194,9 +197,8 @@ export default function Navbar() {
                     d="M21 11.5L12 16.5 3 11.5"
                   />
                 </svg>
-
                 Message
-              </div>
+              </Link>
               <div className="flex items-center text-left px-3 py-2 text-sm hover:bg-red-500 hover:text-white rounded-lg cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
