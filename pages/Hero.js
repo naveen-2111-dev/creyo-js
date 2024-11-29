@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+import { decode } from "jsonwebtoken";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
@@ -8,9 +10,13 @@ export default function HeroPage() {
   useEffect(() => {
     const Decode = () => {
       try {
-        const token = localStorage.getItem("AccessToken");
-        const decode = jwtDecode(token);
-        setMail(decode.email);
+        const tokenCookie = Cookies.get("accessToken");
+
+        if (tokenCookie) {
+          const decoded = jwtDecode(tokenCookie);
+          const email = decoded.email;
+          setMail(email);
+        }
       } catch (error) {
         console.log(error);
       }
