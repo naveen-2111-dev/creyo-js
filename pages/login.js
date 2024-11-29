@@ -1,4 +1,5 @@
 import Login from "@/db/login";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -12,9 +13,9 @@ export default function LoginPage() {
   const HandleLogin = async (e) => {
     try {
       e.preventDefault();
-      console.log(email, pass);
       const res = await Login(email, pass);
-      localStorage.setItem("AccessToken", res);
+      console.log(res);
+      Cookies.set("accessToken", res);
       router.push("/Hero");
     } catch (error) {
       console.log(error);

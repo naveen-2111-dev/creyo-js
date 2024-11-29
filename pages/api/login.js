@@ -38,6 +38,7 @@ export default async function POST(req, res) {
         expiresIn: "1h",
       }
     );
+    console.log(Token);
 
     const RefreshToken = jwt.sign(
       {

@@ -2,7 +2,7 @@ import ConnectDb from "@/lib/connect";
 import bcrypt from "bcrypt";
 
 export default async function POST(req, res) {
-  const { Firstname, Lastname, Email, Password, Country } = req.body;
+  const { Firstname, Lastname, Email, Password, Country, role } = req.body;
 
   if (!Firstname || !Lastname || !Email || !Password || !Country) {
     return res.status(400).json({ message: "All fields are required." });
@@ -23,8 +23,14 @@ export default async function POST(req, res) {
       email: Email,
       password: hashedPassword,
       country: Country,
+      role: role,
     };
 
+    if (role === "freelancer") {
+      newUser.freelancerProfile = Email;
+    } else {
+      newUser.hiringClientProfile = Email;
+    }
     await collection.signup.insertOne(newUser);
     return res.status(201).json({ message: "User successfully created." });
   } catch (err) {
