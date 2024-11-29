@@ -24,14 +24,15 @@ export default async function Verify(email, otp, router) {
       body: JSON.stringify({
         otp: otp,
         verify: verifyDbOtp,
+        email: email,
       }),
     });
 
-    if (response) {
+    if (response.ok) {
       router.push("/password");
       return;
     } else {
-      router.push("/password");
+      router.push("/ResetPassword");
       return;
     }
   } catch (error) {

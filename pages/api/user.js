@@ -7,7 +7,6 @@ export default async function POST(req, res) {
   if (!Firstname || !Lastname || !Email || !Password || !Country) {
     return res.status(400).json({ message: "All fields are required." });
   }
-
   try {
     const hashedPassword = await bcrypt.hash(Password, 10);
     const collection = await ConnectDb();

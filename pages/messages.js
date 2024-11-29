@@ -82,7 +82,7 @@ export default function Messages() {
       <div className="pt-20 flex items-start justify-center p-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
           {/* Left Side: Message List */}
-          <div className="col-span-3 bg-white p-5 rounded-lg shadow-md max-h-screen overflow-y-auto">
+          <div className="col-span-3 bg-white h-96 p-5 rounded-lg shadow-md  overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">Messages</h2>
               {/* Plus Icon */}
@@ -118,7 +118,7 @@ export default function Messages() {
           </div>
 
           {/* Right Side: Message Area */}
-          <div className="col-span-9 bg-white p-6 rounded-lg shadow-md flex flex-col">
+          <div className="col-span-9 bg-white p-8 rounded-lg h-[750px] shadow-md flex flex-col">
             {selectedRoom ? (
               <>
                 <h2 className="text-2xl font-semibold mb-10">{selectedRoom.name} - Conversation</h2>
@@ -127,10 +127,10 @@ export default function Messages() {
                   {messages[selectedRoom.id]?.map((msg, index) => (
                     <div key={index} className={`flex ${msg.sender === currentUser ? "justify-end" : "justify-start"}`}>
                       {msg.sender !== currentUser && (
-                        <div className="w-12 h-12 bg-gray-400 rounded-full mr-4"></div>
+                        <div className="w-12 h-12 bg-gray-400 rounded-full mr-8"></div>
                       )}
                       <div>
-                        <p className={`p-3 rounded-lg ${msg.sender === currentUser ? "bg-blue-100" : "bg-gray-100"} text-gray-800`}>
+                        <p className={`p-3 rounded-lg mr-10 ${msg.sender === currentUser ? "bg-blue-100" : "bg-gray-100"} text-gray-800`}>
                           {msg.message}
                         </p>
                         <span className="text-sm text-gray-400">{msg.timestamp}</span>
@@ -153,7 +153,7 @@ export default function Messages() {
                 </form>
               </>
             ) : (
-              <p className="text-center text-gray-500">Select a room to start chatting.</p>
+              <p className="text-center text-gray-500">Whoops! No Room to Join.</p>
             )}
           </div>
         </div>

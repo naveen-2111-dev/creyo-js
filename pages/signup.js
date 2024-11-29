@@ -30,14 +30,14 @@ export default function Signup() {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen bg-black text-white p-4">
-      <div className="w-full max-w-md p-8 bg-white bg-opacity-10 rounded-lg shadow-lg backdrop-blur-md border border-white/30">
+    <div className="flex justify-center items-center h-screen bg-white text-black p-4">
+      <div className="w-full max-w-md p-8 bg-white bg-opacity-10 rounded-lg shadow-sm backdrop-blur-md border border-white/30">
         <h2 className="text-center text-xl font-semibold mb-6">Sign Up</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="firstName" className="block mb-2">
-              First Name:
+              First Name
             </label>
             <input
               type="text"
@@ -46,13 +46,13 @@ export default function Signup() {
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter your first name"
               required
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="lastName" className="block mb-2">
-              Last Name:
+              Last Name
             </label>
             <input
               type="text"
@@ -61,13 +61,13 @@ export default function Signup() {
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Enter your last name"
               required
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">
-              Email:
+              Email
             </label>
             <input
               type="email"
@@ -76,13 +76,13 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="password" className="block mb-2">
-              Password:
+              Password
             </label>
             <input
               type="password"
@@ -91,13 +91,13 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="country" className="block mb-2">
-              Country:
+              Country
             </label>
             <input
               type="text"
@@ -106,13 +106,13 @@ export default function Signup() {
               onChange={(e) => setCountry(e.target.value)}
               placeholder="Enter your country"
               required
-              className="w-full p-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400"
+              className="w-full mb-10 p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full p-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition font-medium"
+            className="w-full p-3 hover:bg-black hover:text-white rounded-md bg-white text-black border border-black transition font-medium"
           >
             Sign Up
           </button>

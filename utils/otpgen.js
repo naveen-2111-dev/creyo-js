@@ -1,5 +1,3 @@
-import crypto from "crypto";
-
 export default function Otpgenerator() {
   const digits =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";

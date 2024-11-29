@@ -28,10 +28,10 @@ export default function ForgotPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950">
-      <div className="w-full max-w-md text-white p-8 bg-black rounded-lg shadow-md">
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="w-full max-w-md text-black p-8 bg-white rounded-lg shadow-sm border border-black">
         <div className="leading-none mb-10 text-center">
-          <h1 className="text-2xl font-bold text-center text-white mb-2">
+          <h1 className="text-2xl font-bold text-center text-black mb-2">
             Forgot Password
           </h1>
           <p className="flex justify-center items-center text-xs text-gray-400 w-80 text-center mx-auto">
@@ -48,13 +48,13 @@ export default function ForgotPage() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-2 px-4 py-2 border-none bg-gray-800 text-white border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+              className="w-full mt-2 px-4 py-2 border-none bg-white border border-black text-black rounded-md shadow-sm "
               required
             />
           </div>
           <button
             type="button"
-            className="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:outline-none"
+            className="w-full px-4 py-2 text-black bg-white border border-black rounded-md hover:bg-black hover:text-white"
             onClick={handleSubmit}
           >
             Reset Password
@@ -65,7 +65,7 @@ export default function ForgotPage() {
         )}
         <Link
           href="/login"
-          className="flex justify-center items-center mt-6 text-sm text-center text-green-500 hover:underline"
+          className="flex justify-center items-center mt-6 text-sm text-center text-black hover:underline"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
