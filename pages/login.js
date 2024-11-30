@@ -9,13 +9,24 @@ export default function LoginPage() {
   const [pass, setPass] = useState("");
   const router = useRouter();
 
+  // const HandleLogin = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     console.log(email, pass);
+  //     const res = await Login(email, pass);
+  //     localStorage.setItem("AccessToken", res);
+  //     router.push("/dashboard");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const HandleLogin = async (e) => {
     try {
       e.preventDefault();
-      console.log(email, pass);
       const res = await Login(email, pass);
-      localStorage.setItem("AccessToken", res);
-      router.push("/dashboard");
+      console.log(res);
+      Cookies.set("accessToken", res);
+      router.push("/Hero");
     } catch (error) {
       console.log(error);
     }
