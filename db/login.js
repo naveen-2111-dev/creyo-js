@@ -1,6 +1,5 @@
 export default async function Login(Email, Password) {
   try {
-    console.log("ding", Email, Password);
     const UserObj = { email: Email, password: Password };
 
     const response = await fetch("api/login", {

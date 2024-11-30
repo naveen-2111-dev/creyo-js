@@ -25,7 +25,6 @@ export default function LoginPage() {
     try {
       e.preventDefault();
       const res = await Login(email, pass);
-      console.log(res);
       Cookies.set("accessToken", res);
       router.push("/dashboard");
     } catch (error) {
