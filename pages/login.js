@@ -27,7 +27,7 @@ export default function LoginPage() {
       const res = await Login(email, pass);
       console.log(res);
       Cookies.set("accessToken", res);
-      router.push("/Hero");
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }
