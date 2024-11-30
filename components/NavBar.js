@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
+import Cookies from 'js-cookie';
 
 export default function Navbar() {
   const [isProfileCardVisible, setProfileCardVisible] = useState(false);
@@ -17,7 +18,7 @@ export default function Navbar() {
   useEffect(() => {
     const Decode = () => {
       try {
-        const token = localStorage.getItem("AccessToken");
+        const token = Cookies.get("accessToken");
         const decode = jwtDecode(token);
         setMail(decode.email);
       } catch (error) {
