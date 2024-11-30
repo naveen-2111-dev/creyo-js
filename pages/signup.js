@@ -24,7 +24,7 @@ export default function Signup() {
     try {
       await signupUser(firstName, lastName, email, password, country);
 
-      router.push("/login");
+      router.push("/choice");
     } catch (error) {
       setError("Signup failed. Please try again.");
     }
@@ -37,7 +37,7 @@ export default function Signup() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="firstName" className="block mb-2">
-              First Name
+              First Name:
             </label>
             <input
               type="text"
@@ -46,13 +46,13 @@ export default function Signup() {
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter your first name"
               required
-              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-black placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="lastName" className="block mb-2">
-              Last Name
+              Last Name:
             </label>
             <input
               type="text"
@@ -61,13 +61,13 @@ export default function Signup() {
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Enter your last name"
               required
-              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-black placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">
-              Email
+              Email:
             </label>
             <input
               type="email"
@@ -76,13 +76,13 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-black placeholder-gray-400"
             />
           </div>
 
           <div className="mb-4">
             <label htmlFor="password" className="block mb-2">
-              Password
+              Password:
             </label>
             <input
               type="password"
@@ -91,28 +91,15 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
-              className="w-full p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
+              className="w-full p-3 bg-white border border-black rounded-md text-black placeholder-gray-400"
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="country" className="block mb-2">
-              Country
-            </label>
-            <input
-              type="text"
-              id="country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              placeholder="Enter your country"
-              required
-              className="w-full mb-10 p-3 bg-white border border-black rounded-md text-white placeholder-gray-400"
-            />
-          </div>
+          <div className="mb-4"> <label htmlFor="country" className="block mb-2"> Country </label> <select id="country" value={country} onChange={(e) => setCountry(e.target.value)} required className="w-full mb-10 p-3 bg-white border border-black rounded-md text-black" > <option value="" disabled> Select your country </option> <option value="USA">United States</option> <option value="Canada">Canada</option> <option value="UK">United Kingdom</option> <option value="India">India</option> <option value="Australia">Australia</option> <option value="Germany">Germany</option> <option value="France">France</option> <option value="China">China</option> <option value="Japan">Japan</option> <option value="Brazil">Brazil</option> {/* Add more countries as needed */} </select> </div>
 
           <button
             type="submit"
-            className="w-full p-3 hover:bg-black hover:text-white rounded-md bg-white text-black border border-black transition font-medium"
+            className="w-full p-3 bg-white text-black border border-black rounded-md hover:bg-black hover:text-white transition font-medium"
           >
             Sign Up
           </button>

@@ -12,7 +12,7 @@ const Welcome = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-white">
-      <h1 className="text-4xl font-bold text-green-500 mb-4">
+      <h1 className="text-4xl font-bold text-black mb-1">
         Welcome to Creyo
       </h1>
       <p className="text-lg text-gray-600 mb-6">
@@ -21,7 +21,7 @@ const Welcome = () => {
 
       <button
         onClick={handleNavigate}
-        className="px-6 py-3 bg-green-500 text-white font-bold text-lg rounded-lg hover:bg-green-600 transition-colors"
+        className="px-6 py-3 bg-white text-black border border-black font-bold text-lg rounded-full hover:bg-black hover:text-white transition-colors"
       >
         Sign Up
       </button>

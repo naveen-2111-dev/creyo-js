@@ -82,7 +82,7 @@ export default function Messages() {
       <div className="pt-20 flex items-start justify-center p-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
           {/* Left Side: Message List */}
-          <div className="col-span-3 bg-white h-96 p-5 rounded-lg shadow-md  overflow-y-auto">
+          <div className="col-span-3 bg-white h-96 p-5 border border-black rounded-lg shadow-md  md:w-full sm:w-full overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">Messages</h2>
               {/* Plus Icon */}
@@ -118,7 +118,7 @@ export default function Messages() {
           </div>
 
           {/* Right Side: Message Area */}
-          <div className="col-span-9 bg-white p-8 rounded-lg h-[750px] shadow-md flex flex-col">
+          <div className="col-span-9 bg-white p-8 rounded-lg h-[750px] border border-black shadow-md flex flex-col">
             {selectedRoom ? (
               <>
                 <h2 className="text-2xl font-semibold mb-10">{selectedRoom.name} - Conversation</h2>

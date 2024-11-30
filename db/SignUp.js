@@ -22,7 +22,7 @@ export default async function signupUser(
         `Failed to add user: ${errorData.message || "Unknown error"}`
       );
     }
-
+    
     const data = await response.json();
     return data;
   } catch (error) {

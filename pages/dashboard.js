@@ -7,7 +7,7 @@ export default function Home() {
     <div className="bg-white h-screen flex flex-col items-center pt-0"> {/* Added pt-20 to push content below navbar */}
       <Navbar />
       {/* Main content */}
-      <h1 className="text-green-500 text-3xl text-center mt-20">
+      <h1 className="text-black text-3xl text-center mt-20">
         Welcome to Creyo!
       </h1>
     </div>
