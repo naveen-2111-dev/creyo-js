@@ -5,7 +5,7 @@ import { serialize } from "cookie";
 
 export default async function POST(req, res) {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({
@@ -60,6 +60,19 @@ export default async function POST(req, res) {
         sameSite: "strict",
         maxAge: 7 * 24 * 60 * 60,
       })
+    );
+
+    const updateFields = { role: role };
+
+    if (role === "freelancer") {
+      updateFields.freelancerProfile = User._id;
+    } else if (role === "client") {
+      updateFields.hiringClientProfile = User._id;
+    }
+
+    const signuSet = await db.signup.updateOne(
+      { email },
+      { $set: updateFields }
     );
 
     return res.status(200).json({

@@ -1,56 +1,74 @@
-import isAuthenticated from "../Middleware/auth";
 import ConnectDb from "@/lib/connect";
+import isAuthenticated from "../Middleware/auth";
 
 export default async function POST(req, res) {
   await isAuthenticated(req, res, async () => {
+    console.log(req.body)
     try {
       const {
-        exprience,
+        name,
+        pronoun,
+        Experience,
         goal,
-        tellAbout,
-        manual: {
-          fieldOfWork,
-          skills,
-          role,
-          experience: {
-            placeofWork,
-            company,
-            Location,
-            start,
-            present,
-            description,
-          },
-          education: { sslc, Hsc, university },
-          language,
-          bio: { link, content },
-          payment,
-          location,
-          dob,
-          address: { dno, street, city, state, pincode },
-        },
+        fieldOfWork,
+        skills,
+        role,
+        experience,
+        sslc,
+        Hsc,
+        university,
+        link,
+        content,
+        location,
+        dob,
+        language,
+        dno,
+        street,
+        city,
+        state,
+        pincode,
+        payment,
       } = req.body;
 
+      console.log({
+        Name: name,
+        Pronoun: pronoun,
+        Experience: Experience,
+        Goal: goal,
+        FieldOfWork: fieldOfWork,
+        Skills: skills,
+        Role: role,
+        ExperienceDetails: experience,
+        SSLC: sslc,
+        HSC: Hsc,
+        University: university,
+        Link: link,
+        language:language,
+        Content: content,
+        Location: location,
+        DateOfBirth: dob,
+        Dno: dno,
+        Street: street,
+        City: city,
+        State: state,
+        Pincode: pincode,
+        payment: payment
+      });
+
       if (
-        !exprience ||
-        !["new", "intermediate", "expert"].includes(exprience) ||
+        !name ||
+        !pronoun ||
+        !Experience ||
+        !language||
         !goal ||
-        !["earn", "experience", "sideincome"].includes(goal) ||
-        !tellAbout ||
         !fieldOfWork ||
         !skills ||
-        !Array.isArray(skills) ||
-        skills.length === 0 ||
         !role ||
-        !placeofWork ||
-        !company ||
-        !Location ||
-        !start ||
-        !present ||
-        !description ||
+        !experience ||
+        experience.length === 0 ||
         !sslc ||
         !Hsc ||
         !university ||
-        !language ||
         !link ||
         !content ||
         !payment ||
@@ -68,34 +86,30 @@ export default async function POST(req, res) {
       }
 
       const collection = await ConnectDb();
-      console.log(req.user)
-      const user = await collection.signup.findOne({
-        email: req.user.email,
-      });
+      const user = await collection.signup.findOne({ email: req.user.email });
+
       if (!user) {
-        return res.status(401).json({
-          message: "not signed-up",
-        });
+        return res.status(401).json({ message: "User not signed up" });
       }
 
       const id = user._id;
-
       const newFreelancer = {
-        exprience,
+        name,
+        pronoun,
+        Experience,
         goal,
-        tellAbout,
         manual: {
           fieldOfWork,
           skills,
           role,
-          experience: {
-            placeofWork,
-            company,
-            Location,
-            start: new Date(start),
-            present: new Date(present),
-            description,
-          },
+          experience: experience.map((exp) => ({
+            placeofWork: exp.placeofWork,
+            company: exp.company,
+            Location: exp.Location,
+            start: new Date(exp.start),
+            present: exp.present,
+            description: exp.description,
+          })),
           education: {
             sslc,
             Hsc,
@@ -123,10 +137,9 @@ export default async function POST(req, res) {
 
       const result = await collection.freelancer.insertOne(newFreelancer);
 
+      console.log("Insert Result:", result); // Log result of insertion
       if (!result) {
-        return res.status(400).json({
-          error: "Failed to add data",
-        });
+        return res.status(400).json({ error: "Failed to add data" });
       }
 
       return res.status(201).json({

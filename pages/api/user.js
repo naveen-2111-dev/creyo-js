@@ -24,12 +24,7 @@ export default async function POST(req, res) {
       country: Country,
       role: role,
     };
-
-    if (role === "freelancer") {
-      newUser.freelancerProfile = Email;
-    } else {
-      newUser.hiringClientProfile = Email;
-    }
+    
     await collection.signup.insertOne(newUser);
     return res.status(201).json({ message: "User successfully created." });
   } catch (err) {

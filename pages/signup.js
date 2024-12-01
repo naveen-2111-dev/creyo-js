@@ -24,7 +24,7 @@ export default function Signup() {
     try {
       await signupUser(firstName, lastName, email, password, country);
 
-      router.push("/choice");
+      router.push("/login");
     } catch (error) {
       setError("Signup failed. Please try again.");
     }
