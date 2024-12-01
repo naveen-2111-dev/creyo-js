@@ -1,6 +1,6 @@
-export default async function Login(Email, Password) {
+export default async function Login(Email, Password,role) {
   try {
-    const UserObj = { email: Email, password: Password };
+    const UserObj = { email: Email, password: Password, role: role };
 
     const response = await fetch("api/login", {
       method: "POST",

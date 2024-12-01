@@ -3,18 +3,31 @@ import { parse } from "cookie";
 
 export function middleware(req) {
   const cookie = parse(req.headers.get("cookie") || "");
+  const url = req.nextUrl;
 
-  if (!cookie.Token && req.nextUrl.pathname === "/dashboard") {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  const protectedRoutes = {
+    "/dashboard": "Token",
+    "/freelancerDashboard": "accessToken",
+    "/clientDashboard": "accessToken",
+    "/password": "email",
+  };
 
-  if (!cookie.email && req.nextUrl.pathname === "/password") {
-    return NextResponse.redirect(new URL("/ResetPassword", req.url));
+  const requiredCookie = protectedRoutes[url.pathname];
+  if (requiredCookie && !cookie[requiredCookie]) {
+    const redirectTo =
+      url.pathname === "/password" ? "/ResetPassword" : "/login";
+    return NextResponse.redirect(new URL(redirectTo, req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/Hero", "/password", "/dashboard"],
+  matcher: [
+    "/Hero",
+    "/password",
+    "/dashboard",
+    "/freelancerDashboard",
+    "/clientDashboard",
+  ],
 };

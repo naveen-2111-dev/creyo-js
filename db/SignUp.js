@@ -3,7 +3,7 @@ export default async function signupUser(
   Lastname,
   Email,
   Password,
-  Country
+  Country,
 ) {
   try {
     const UserObj = { Firstname, Lastname, Email, Password, Country };
@@ -22,7 +22,7 @@ export default async function signupUser(
         `Failed to add user: ${errorData.message || "Unknown error"}`
       );
     }
-    
+
     const data = await response.json();
     return data;
   } catch (error) {
