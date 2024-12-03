@@ -30,30 +30,30 @@ export default async function POST(req, res) {
         payment,
       } = req.body;
 
-      console.log({
-        Name: name,
-        Pronoun: pronoun,
-        Experience: Experience,
-        Goal: goal,
-        FieldOfWork: fieldOfWork,
-        Skills: skills,
-        Role: role,
-        ExperienceDetails: experience,
-        SSLC: sslc,
-        HSC: Hsc,
-        University: university,
-        Link: link,
-        language:language,
-        Content: content,
-        Location: location,
-        DateOfBirth: dob,
-        Dno: dno,
-        Street: street,
-        City: city,
-        State: state,
-        Pincode: pincode,
-        payment: payment
-      });
+      // console.log({
+      //   Name: name,
+      //   Pronoun: pronoun,
+      //   Experience: Experience,
+      //   Goal: goal,
+      //   FieldOfWork: fieldOfWork,
+      //   Skills: skills,
+      //   Role: role,
+      //   ExperienceDetails: experience,
+      //   SSLC: sslc,
+      //   HSC: Hsc,
+      //   University: university,
+      //   Link: link,
+      //   language:language,
+      //   Content: content,
+      //   Location: location,
+      //   DateOfBirth: dob,
+      //   Dno: dno,
+      //   Street: street,
+      //   City: city,
+      //   State: state,
+      //   Pincode: pincode,
+      //   payment: payment
+      // });
 
       if (
         !name ||
@@ -136,8 +136,6 @@ export default async function POST(req, res) {
       };
 
       const result = await collection.freelancer.insertOne(newFreelancer);
-
-      console.log("Insert Result:", result); // Log result of insertion
       if (!result) {
         return res.status(400).json({ error: "Failed to add data" });
       }

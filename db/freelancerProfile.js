@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 export default async function LancerProfile(freelancerDetails) {
   try {
     const accesstoken = Cookies.get("accessToken");
-    console.log(accesstoken);
     if (!accesstoken) {
       console.error("Access token not found.");
       return;
