@@ -20,7 +20,6 @@ export default async function POST(req, res) {
         message: "user not found",
       });
     }
-
     const isPasswordValid = await bcrypt.compare(password, User.password);
     if (!isPasswordValid) {
       return res.status(401).json({
