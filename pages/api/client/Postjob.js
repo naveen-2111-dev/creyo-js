@@ -46,7 +46,7 @@ export default async function POST(req, res) {
           message: "User not signed up",
         });
       }
-      const objId = checkUser._id;
+      const objId = checkUser._id;//user id
 
       const freelancerskills = await collection.freelancer.find({}).toArray();
 
