@@ -3,7 +3,6 @@ import isAuthenticated from "../Middleware/auth";
 
 export default async function POST(req, res) {
   await isAuthenticated(req, res, async () => {
-    console.log(req.body)
     try {
       const {
         name,
