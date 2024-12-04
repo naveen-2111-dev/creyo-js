@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-// import "tailwindcss/tailwind.css"
+import "tailwindcss/tailwind.css"
 import { useState, useEffect } from 'react'
 import Navbar from '@/components/NavBar'
 
