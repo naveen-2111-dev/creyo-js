@@ -26,10 +26,13 @@ export default async function POST(req, res) {
         });
       }
 
-      const compare = await db.bid.findOne({ freelancerId: user._id });
-      if (compare) {
+      const existingBid = await db.bid.findOne({
+        job: job,
+        freelancerId: user._id,
+      });
+      if (existingBid) {
         return res.status(400).json({
-          message: "user alredy exists",
+          message: "User has already placed a bid for this job",
         });
       }
 
