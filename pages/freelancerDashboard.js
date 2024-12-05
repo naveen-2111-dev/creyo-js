@@ -89,12 +89,12 @@ const FreelancerDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/images/p2.jpg')] bg-cover bg-center text-gray-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/images/p2.jpg')] bg-cover bg-center text-gray-900 ">
       <div className="absolute top-4 left-4  text-white text-3xl px-4 py-2 rounded-md">
         {count} / 10
       </div>
 
-      <div className="w-full h-5xl max-w-6xl p-6 bg-white rounded-lg shadow-md py-20">
+      <div className="w-full h-5xl max-w-6xl p-6 bg-white rounded-lg shadow-2xl py-20">
 
         {count === 1 && (
           <div className="flex flex-col md:flex-row gap-8">
@@ -403,294 +403,135 @@ const FreelancerDashboard = () => {
 
         {count === 4 && (
           <>
-            <h2 className="text-xl font-semibold text-center mb-4">
+            <h2 className="text-xl font-semibold text-center mb-6">
               Your Work Details
             </h2>
+            <div className="flex flex-col md:flex-row gap-6">
+              {/* Left Column */}
+              <div className="flex-1">
+                <div className="mb-6">
+                  <label htmlFor="fieldOfWork" className="block text-lg font-bold mb-2">
+                    Field of Work
+                  </label>
+                  <input
+                    type="text"
+                    id="fieldOfWork"
+                    placeholder="Enter your field of work"
+                    onChange={(e) =>
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          fieldOfWork: e.target.value,
+                        },
+                      })
+                    }
+                    className="w-full p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
 
-            <div className="mb-4">
-              <label
-                htmlFor="fieldOfWork"
-                className="block text-sm font-medium"
-              >
-                Field of Work
-              </label>
-              <input
-                type="text"
-                id="fieldOfWork"
-                placeholder="Enter your field of work"
-                onChange={(e) =>
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      fieldOfWork: e.target.value,
-                    },
-                  })
-                }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="role" className="block text-sm font-medium">
-                Role
-              </label>
-              <input
-                type="text"
-                id="role"
-                placeholder="Enter your role"
-                onChange={(e) =>
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      role: e.target.value,
-                    },
-                  })
-                }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="skills" className="block text-sm font-medium">
-                Select Skills
-              </label>
-              <div className="flex flex-wrap gap-4 mt-2">
-                {skills.map((skill) => (
-                  <div key={skill} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id={skill}
-                      value={skill}
-                      checked={freelancerDetails.manual.skills.includes(skill)}
-                      onChange={(e) => {
-                        const skillName = e.target.value;
-                        const isChecked = e.target.checked;
-                        setFreelancerDetails({
-                          ...freelancerDetails,
-                          manual: {
-                            ...freelancerDetails.manual,
-                            skills: isChecked
-                              ? [...freelancerDetails.manual.skills, skillName]
-                              : freelancerDetails.manual.skills.filter(
-                                (item) => item !== skillName
-                              ),
-                          },
-                        });
-                      }}
-                      className="p-2 border border-gray-300 rounded-md"
-                    />
-                    <label htmlFor={skill} className="text-sm">
-                      {skill}
-                    </label>
-                  </div>
-                ))}
+                <div className="mb-6">
+                  <label htmlFor="role" className="block text-lg font-bold mb-2">
+                    Role
+                  </label>
+                  <input
+                    type="text"
+                    id="role"
+                    placeholder="Enter your role"
+                    onChange={(e) =>
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          role: e.target.value,
+                        },
+                      })
+                    }
+                    className="w-full p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
               </div>
 
-              <div className="mt-4">
-                <h3 className="text-sm font-medium">Selected Skills:</h3>
-                <div className="flex flex-wrap gap-2">
-                  {freelancerDetails.manual.skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="bg-orange-500 text-white py-1 px-3 rounded-md"
-                    >
-                      {skill}
-                    </div>
-                  ))}
+              {/* Right Column */}
+              <div className="flex-1">
+                <div className="mb-6">
+                  <label htmlFor="skills" className="block text-sm font-medium mb-2">
+                    Select Skills
+                  </label>
+                  <div className="flex flex-wrap gap-4 mt-2">
+                    {skills.map((skill) => (
+                      <div key={skill} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          id={skill}
+                          value={skill}
+                          checked={freelancerDetails.manual.skills.includes(skill)}
+                          onChange={(e) => {
+                            const skillName = e.target.value;
+                            const isChecked = e.target.checked;
+                            setFreelancerDetails({
+                              ...freelancerDetails,
+                              manual: {
+                                ...freelancerDetails.manual,
+                                skills: isChecked
+                                  ? [...freelancerDetails.manual.skills, skillName]
+                                  : freelancerDetails.manual.skills.filter(
+                                    (item) => item !== skillName
+                                  ),
+                              },
+                            });
+                          }}
+                          className="p-2 border border-gray-300 rounded-md"
+                        />
+                        <label htmlFor={skill} className="text-sm">
+                          {skill}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <h3 className="text-sm font-medium mb-2">Selected Skills:</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {freelancerDetails.manual.skills.map((skill, index) => (
+                      <div
+                        key={index}
+                        className="bg-orange-500 text-white py-1 px-3 rounded-md"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </>
         )}
-
         {count === 5 && (
           <>
-            <h2 className="text-xl font-semibold text-center mb-4">
+            <h2 className="text-xl font-semibold text-center mb-6">
               Your Work Experience
             </h2>
-
-            <div className="mb-4">
-              <label
-                htmlFor="placeOfWork"
-                className="block text-sm font-medium"
-              >
-                Place of Work
-              </label>
-              <input
-                type="text"
-                id="placeOfWork"
-                placeholder="Enter the place of work"
-                value={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].placeofWork || ""
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].placeofWork =
-                    e.target.value;
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="company" className="block text-sm font-medium">
-                Company Name
-              </label>
-              <input
-                type="text"
-                id="company"
-                placeholder="Enter the company name"
-                value={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].company || ""
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].company =
-                    e.target.value;
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="location" className="block text-sm font-medium">
-                Location
-              </label>
-              <input
-                type="text"
-                id="location"
-                placeholder="Enter the location"
-                value={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].Location || ""
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].Location =
-                    e.target.value;
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="startDate" className="block text-sm font-medium">
-                Start Date
-              </label>
-              <input
-                type="date"
-                id="startDate"
-                value={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].start || ""
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].start =
-                    e.target.value;
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            {/* Checkbox to toggle End Date visibility */}
-            <div className="mb-4 flex items-center">
-              <input
-                type="checkbox"
-                id="presentlyWorkHere"
-                checked={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].present
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].present = e
-                    .target.checked
-                    ? "Present"
-                    : "";
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="mr-2"
-              />
-              <label htmlFor="presentlyWorkHere" className="text-sm">
-                I presently work here
-              </label>
-            </div>
-
-            {/* Conditionally render End Date */}
-            {!freelancerDetails.manual.experience[
-              freelancerDetails.manual.experience.length - 1
-            ].present && (
+            <div className="flex flex-col md:flex-row gap-6">
+              {/* Left Column - Input Form */}
+              <div className="flex-1">
                 <div className="mb-4">
-                  <label htmlFor="endDate" className="block text-sm font-medium">
-                    End Date (if applicable)
+                  <label htmlFor="placeOfWork" className="block text-sm font-medium">
+                    Place of Work
                   </label>
                   <input
-                    type="date"
-                    id="endDate"
+                    type="text"
+                    id="placeOfWork"
+                    placeholder="Enter the place of work"
                     value={
                       freelancerDetails.manual.experience[
                         freelancerDetails.manual.experience.length - 1
-                      ].end || ""
+                      ].placeofWork || ""
                     }
                     onChange={(e) => {
-                      const updatedExperience = [
-                        ...freelancerDetails.manual.experience,
-                      ];
-                      updatedExperience[updatedExperience.length - 1].end =
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].placeofWork =
                         e.target.value;
                       setFreelancerDetails({
                         ...freelancerDetails,
@@ -703,143 +544,285 @@ const FreelancerDashboard = () => {
                     className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
-              )}
 
-            <div className="mb-4">
-              <label
-                htmlFor="description"
-                className="block text-sm font-medium"
-              >
-                Job Description
-              </label>
-              <textarea
-                id="description"
-                placeholder="Describe your job responsibilities"
-                value={
-                  freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                  ].description || ""
-                }
-                onChange={(e) => {
-                  const updatedExperience = [
-                    ...freelancerDetails.manual.experience,
-                  ];
-                  updatedExperience[updatedExperience.length - 1].description =
-                    e.target.value;
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: updatedExperience,
-                    },
-                  });
-                }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            <div className="flex justify-between gap-4">
-              <button
-                type="button"
-                onClick={() => {
-                  // Cancel the experience entry by resetting the form inputs
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    manual: {
-                      ...freelancerDetails.manual,
-                      experience: [
-                        ...freelancerDetails.manual.experience.slice(0, -1), // Preserve previous experience
-                        {
-                          placeofWork: "",
-                          company: "",
-                          Location: "",
-                          start: "",
-                          end: "",
-                          present: "",
-                          description: "",
+                <div className="mb-4">
+                  <label htmlFor="company" className="block text-sm font-medium">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    placeholder="Enter the company name"
+                    value={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].company || ""
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].company =
+                        e.target.value;
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
                         },
-                      ],
-                    },
-                  });
-                }}
-                className="w-full py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-              >
-                Cancel
-              </button>
+                      });
+                    }}
+                    className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  const currentExperience =
-                    freelancerDetails.manual.experience[
-                    freelancerDetails.manual.experience.length - 1
-                    ];
+                <div className="mb-4">
+                  <label htmlFor="location" className="block text-sm font-medium">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    placeholder="Enter the location"
+                    value={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].Location || ""
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].Location =
+                        e.target.value;
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
+                        },
+                      });
+                    }}
+                    className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
 
-                  // Check if the current experience is filled in
-                  if (
-                    currentExperience.placeofWork ||
-                    currentExperience.company ||
-                    currentExperience.Location ||
-                    currentExperience.start ||
-                    currentExperience.description
-                  ) {
-                    // Add the new empty experience only if the current one is filled in
-                    setFreelancerDetails({
-                      ...freelancerDetails,
-                      manual: {
-                        ...freelancerDetails.manual,
-                        experience: [
-                          ...freelancerDetails.manual.experience,
-                          {
-                            placeofWork: "",
-                            company: "",
-                            Location: "",
-                            start: "",
-                            end: "",
-                            present: "",
-                            description: "",
+                <div className="mb-4">
+                  <label htmlFor="startDate" className="block text-sm font-medium">
+                    Start Date
+                  </label>
+                  <input
+                    type="date"
+                    id="startDate"
+                    value={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].start || ""
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].start =
+                        e.target.value;
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
+                        },
+                      });
+                    }}
+                    className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
+
+                <div className="mb-4 flex items-center">
+                  <input
+                    type="checkbox"
+                    id="presentlyWorkHere"
+                    checked={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].present
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].present = e
+                        .target.checked
+                        ? "Present"
+                        : "";
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
+                        },
+                      });
+                    }}
+                    className="mr-2"
+                  />
+                  <label htmlFor="presentlyWorkHere" className="text-sm">
+                    I presently work here
+                  </label>
+                </div>
+
+                {!freelancerDetails.manual.experience[
+                  freelancerDetails.manual.experience.length - 1
+                ].present && (
+                    <div className="mb-4">
+                      <label htmlFor="endDate" className="block text-sm font-medium">
+                        End Date (if applicable)
+                      </label>
+                      <input
+                        type="date"
+                        id="endDate"
+                        value={
+                          freelancerDetails.manual.experience[
+                            freelancerDetails.manual.experience.length - 1
+                          ].end || ""
+                        }
+                        onChange={(e) => {
+                          const updatedExperience = [...freelancerDetails.manual.experience];
+                          updatedExperience[updatedExperience.length - 1].end =
+                            e.target.value;
+                          setFreelancerDetails({
+                            ...freelancerDetails,
+                            manual: {
+                              ...freelancerDetails.manual,
+                              experience: updatedExperience,
+                            },
+                          });
+                        }}
+                        className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                      />
+                    </div>
+                  )}
+
+                <div className="mb-4">
+                  <label htmlFor="description" className="block text-sm font-medium">
+                    Job Description
+                  </label>
+                  <textarea
+                    id="description"
+                    placeholder="Describe your job responsibilities"
+                    value={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].description || ""
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [...freelancerDetails.manual.experience];
+                      updatedExperience[updatedExperience.length - 1].description =
+                        e.target.value;
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
+                        },
+                      });
+                    }}
+                    className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
+
+                <div className="flex justify-between gap-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: [
+                            ...freelancerDetails.manual.experience.slice(0, -1),
+                            {
+                              placeofWork: "",
+                              company: "",
+                              Location: "",
+                              start: "",
+                              end: "",
+                              present: "",
+                              description: "",
+                            },
+                          ],
+                        },
+                      });
+                    }}
+                    className="w-full py-2 px-4 border border-red-600 text-red-600 rounded-md hover:bg-red-600 hover:text-white transition"
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const currentExperience =
+                        freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                        ];
+                      if (
+                        currentExperience.placeofWork ||
+                        currentExperience.company ||
+                        currentExperience.Location ||
+                        currentExperience.start ||
+                        currentExperience.description
+                      ) {
+                        setFreelancerDetails({
+                          ...freelancerDetails,
+                          manual: {
+                            ...freelancerDetails.manual,
+                            experience: [
+                              ...freelancerDetails.manual.experience,
+                              {
+                                placeofWork: "",
+                                company: "",
+                                Location: "",
+                                start: "",
+                                end: "",
+                                present: "",
+                                description: "",
+                              },
+                            ],
                           },
-                        ],
-                      },
-                    });
-                  } else {
-                    console.log(
-                      "Please fill in the current experience details before adding a new one."
-                    );
-                  }
-                }}
-                className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
-              >
-                Add Experience
-              </button>
-            </div>
+                        });
+                      } else {
+                        console.log(
+                          "Please fill in the current experience details before adding a new one."
+                        );
+                      }
+                    }}
+                    className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+                  >
+                    Add Experience
+                  </button>
+                </div>
+              </div>
 
-            <div className="mt-6">
-              <h3 className="text-xl font-semibold mb-4">Saved Jobs</h3>
-              {freelancerDetails.manual.experience.length > 1 ? (
-                <ul className="space-y-4">
-                  {freelancerDetails.manual.experience
-                    .slice(0, -1)
-                    .map((job, index) => (
+              {/* Right Column - Saved Jobs */}
+              <div className="flex-1 bg-gray-50 p-4 rounded-md shadow">
+                <h3 className="text-xl font-semibold mb-4">Saved Jobs</h3>
+                {freelancerDetails.manual.experience.length > 1 ? (
+                  <ul className="space-y-4">
+                    {freelancerDetails.manual.experience.slice(0, -1).map((job, index) => (
                       <li
                         key={index}
-                        className="bg-gray-100 p-4 rounded-md shadow-sm"
+                        className="bg-white p-4 rounded-md shadow-sm border flex justify-between items-start"
                       >
-                        <h4 className="font-bold">{job.company}</h4>
-                        <p>
-                          {job.placeofWork} - {job.Location}
-                        </p>
-                        <p>
-                          {job.start} - {job.present ? "Present" : job.end}
-                        </p>
-                        <p>{job.description}</p>
+                        {/* Job Details */}
+                        <div>
+                          <h4 className="font-medium text-lg">
+                            {job.company || "Unknown Company"}
+                          </h4>
+                          <p className="text-sm text-gray-700">
+                            {job.placeofWork}, {job.Location}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {job.start} - {job.present || job.end || "Unknown"}
+                          </p>
+                          <p className="text-sm text-gray-600 mt-2">{job.description}</p>
+                        </div>
+                        {/* Delete Button */}
                         <button
-                          type="button"
                           onClick={() => {
-                            const updatedExperience =
-                              freelancerDetails.manual.experience.filter(
-                                (_, i) => i !== index
-                              );
+                            const updatedExperience = freelancerDetails.manual.experience.filter(
+                              (_, i) => i !== index
+                            );
                             setFreelancerDetails({
                               ...freelancerDetails,
                               manual: {
@@ -848,19 +831,22 @@ const FreelancerDashboard = () => {
                               },
                             });
                           }}
-                          className="mt-2 py-1 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                          className="text-red-500 hover:text-red-700 ml-4"
                         >
-                          Remove
+                          Delete
                         </button>
                       </li>
                     ))}
-                </ul>
-              ) : (
-                <p>No saved jobs yet.</p>
-              )}
+                  </ul>
+                ) : (
+                  <p className="text-gray-500">No saved jobs yet.</p>
+                )}
+              </div>
+
             </div>
           </>
         )}
+
 
         {count === 6 && (
           <>

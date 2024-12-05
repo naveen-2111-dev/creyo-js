@@ -209,7 +209,7 @@ const Welcome = () => {
           <div
             className='relative flex flex-col items-center mt-10 w-[80rem] h-[40rem] rounded-2xl border-2 border-black justify-center bg-cover bg-center bg-no-repeat m-10 p-10 text-center'
             style={{
-              backgroundImage: `url('https://img.freepik.com/free-photo/medium-shot-smiley-man-working-desk_23-2149930992.jpg?t=st=1733252345~exp=1733255945~hmac=bf6f4f9b637fe47ca20a36c26c83c5f002e8a4f045d6f65eb01b50e5a140139e&w=1380')`,
+              backgroundImage: `url('/images/home1.jpeg')`,
             }}
           >
             <div className='absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-black to-transparent rounded-l-2xl'></div>
@@ -239,7 +239,7 @@ const Welcome = () => {
           <div
             className='relative flex mt-10 w-[80rem] h-[40rem] rounded-2xl border-2 border-black justify-end bg-cover bg-center bg-no-repeat m-10 p-10'
             style={{
-              backgroundImage: `url('https://img.freepik.com/free-photo/two-indian-business-man-suits-sitting-office-cafe-looking-laptop-drinking-coffee_627829-1501.jpg?t=st=1733254203~exp=1733257803~hmac=e19e321796df6bec93752d1096b8e8b0b51c7bc9bd03f2d6fdb345b587e47ec1&w=1380')`,
+              backgroundImage: `url('/images/home2.jpeg')`,
             }}
           >
             {/* Overlay for the right side */}
