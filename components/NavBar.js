@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // import "tailwindcss/tailwind.css";
 import Cookies from "js-cookie";
 import Image from "next/image";
-import CreyoLogo from '../public/images/CreyoLogo.png';
+import CreyoLogo from "../public/images/CreyoLogo.png";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +38,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const fetchUserName = async () => { 
+    const fetchUserName = async () => {
       if (isLoggedIn && mail) {
         try {
           const res = await fetch("/api/welcome", {
@@ -50,6 +50,7 @@ export default function Navbar() {
           });
           const data = await res.json();
           setName(data.data.name);
+          console.log(data);
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
@@ -61,14 +62,20 @@ export default function Navbar() {
 
   return (
     <nav className="bg-[#B5B5B5]  text-black w-full mx-auto p-5 px-10 flex items-center justify-between relative">
-
       {/* Logo and Navigation Links */}
       <div className="flex items-center space-x-2">
         {/* Logo */}
         <div className="flex items-center h-10 m-0">
           {/* Logo */}
           <Link href="/">
-            <Image src={CreyoLogo} alt="CREYO Logo" width={180} height={40} objectFit="contain" className="mt-5" />
+            <Image
+              src={CreyoLogo}
+              alt="CREYO Logo"
+              width={180}
+              height={40}
+              objectFit="contain"
+              className="mt-5"
+            />
           </Link>
         </div>
       </div>
