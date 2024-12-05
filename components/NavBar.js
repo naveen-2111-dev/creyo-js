@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import CreyoLogo from "../public/images/CreyoLogo.png";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileCardVisible, setProfileCardVisible] = useState(false);
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const router = useRouter()
 
   const toggleProfileCard = (e) => {
     e.preventDefault();
@@ -49,8 +52,14 @@ export default function Navbar() {
             body: JSON.stringify({ email: mail }),
           });
           const data = await res.json();
+          // console.log(data);
           setName(data.data.name);
-          console.log(data);
+          setRole(data.data.role);
+
+
+          console.log(data.data.name)
+          console.log(data.data.role)
+
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
@@ -58,7 +67,24 @@ export default function Navbar() {
     };
 
     fetchUserName();
+
   }, [isLoggedIn, mail]);
+
+  const logoClickHandler = (e) => {
+    e.preventDefault();
+    if (isLoggedIn && role) {
+      // Redirect to the dashboard based on the user's role
+      window.location.href = `/dashboard/${role}`;
+    } else {
+      // Redirect to the homepage if the user is not logged in
+      window.location.href = "/";
+    }
+  };
+  const handleLogout = () => {
+    Cookies.remove("accessToken"); // Clear the token
+    setIsLoggedIn(false); // Update the state
+    router.push("/"); // Navigate to the homepage or desired page
+  };
 
   return (
     <nav className="bg-[#B5B5B5]  text-black w-full mx-auto p-5 px-10 flex items-center justify-between relative">
@@ -67,7 +93,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center h-10 m-0">
           {/* Logo */}
-          <Link href="/">
+          <Link href="/" onClick={logoClickHandler}>
             <Image
               src={CreyoLogo}
               alt="CREYO Logo"
@@ -135,7 +161,7 @@ export default function Navbar() {
                     />
                     <div>
                       <h2 className="text-lg font-semibold">{name}</h2>
-                      <p className="text-sm text-gray-500">Role</p>
+                      <p className="text-sm text-gray-500">{role}</p>
                     </div>
                   </div>
                   <Link
@@ -146,10 +172,7 @@ export default function Navbar() {
                   </Link>
                   <div
                     className="flex items-center text-left px-3 py-2 text-sm hover:bg-red-500 hover:text-white rounded-lg cursor-pointer"
-                    onClick={() => {
-                      Cookies.remove("accessToken");
-                      setIsLoggedIn(false);
-                    }}
+                    onClick={handleLogout}
                   >
                     Logout
                   </div>

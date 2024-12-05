@@ -79,7 +79,7 @@ const FreelancerDashboard = () => {
       const res = await LancerProfile(freelancerDetails);
 
       if (res) {
-        router.push("/dashboard");
+        router.push("/dashboard/freelancer");
       } else {
         router.push("/freelancerDashboard");
       }
@@ -95,7 +95,6 @@ const FreelancerDashboard = () => {
       </div>
 
       <div className="w-full h-5xl max-w-6xl p-6 bg-white rounded-lg shadow-2xl py-20">
-
         {count === 1 && (
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left Side: Input Form */}
