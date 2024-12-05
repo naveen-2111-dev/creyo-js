@@ -79,7 +79,7 @@ const FreelancerDashboard = () => {
       const res = await LancerProfile(freelancerDetails);
 
       if (res) {
-        router.push("/dashboard");
+        router.push("/dashboard/freelancer");
       } else {
         router.push("/freelancerDashboard");
       }
