@@ -49,6 +49,7 @@ export default function Navbar() {
             body: JSON.stringify({ email: mail }),
           });
           const data = await res.json();
+          console.log(data);
           setName(data.data.name);
         } catch (error) {
           console.error("Error fetching user data:", error);
