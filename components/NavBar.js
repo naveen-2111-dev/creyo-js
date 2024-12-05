@@ -147,7 +147,7 @@ export default function Navbar() {
                     Logout
                   </div>
                 </div>
-              )}
+              )}[]
             </div>
           </>
         ) : (

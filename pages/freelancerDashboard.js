@@ -3,6 +3,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "tailwindcss/tailwind.css";
 
+
+
+
 const FreelancerDashboard = () => {
   const router = useRouter();
   const [freelancerDetails, setFreelancerDetails] = useState({
@@ -46,6 +49,7 @@ const FreelancerDashboard = () => {
       },
     },
   });
+  const [otherSelected, setOtherSelected] = useState(false);
   const [count, setCount] = useState(1);
   const skills = [
     "JavaScript",
@@ -85,64 +89,149 @@ const FreelancerDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-900">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('/images/p2.jpg')] bg-cover bg-center text-gray-900">
+      <div className="absolute top-4 left-4  text-white text-3xl px-4 py-2 rounded-md">
+        {count} / 10
+      </div>
+
+      <div className="w-full h-5xl max-w-6xl p-6 bg-white rounded-lg shadow-md py-20">
+
         {count === 1 && (
-          <>
-            <h2 className="text-2xl font-bold text-center mb-4">
-              Your Details
-            </h2>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                onChange={(e) =>
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    name: e.target.value,
-                  })
-                }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              />
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Left Side: Input Form */}
+            <div className="w-full md:w-1/2 py-10">
+              <h2 className="text-2xl font-bold text-center mb-4">How can we call you?</h2>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-sm font-medium">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter your name"
+                  onChange={(e) =>
+                    setFreelancerDetails({
+                      ...freelancerDetails,
+                      name: e.target.value,
+                    })
+                  }
+                  className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md outline-none focus:ring-0 focus:border-orange-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="pronoun" className="block text-sm font-medium">
+                  Pronoun
+                </label>
+                <select
+                  id="pronoun"
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === "other") {
+                      setFreelancerDetails({ ...freelancerDetails, pronoun: "" });
+                      setOtherSelected(true); // Show input box
+                    } else {
+                      setFreelancerDetails({ ...freelancerDetails, pronoun: value });
+                      setOtherSelected(false); // Hide input box
+                    }
+                  }}
+                  className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                >
+                  <option value="">Select your pronoun</option>
+                  <option value="He/Him">He/Him</option>
+                  <option value="She/Her">She/Her</option>
+                  <option value="They/Them">They/Them</option>
+                  <option value="Ze/Zir">Ze/Zir</option>
+                  <option value="Xe/Xem">Xe/Xem</option>
+                  <option value="other">Other</option>
+                </select>
+
+                {/* Show text input only if "Other" is selected */}
+                {otherSelected && (
+                  <input
+                    type="text"
+                    id="customPronoun"
+                    placeholder="Enter your pronoun"
+                    onChange={(e) =>
+                      setFreelancerDetails({ ...freelancerDetails, pronoun: e.target.value })
+                    }
+                    className="w-full mt-2 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                )}
+              </div>
+
+
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="pronoun" className="block text-sm font-medium">
-                Pronoun
-              </label>
-              <input
-                type="text"
-                id="pronoun"
-                placeholder="Enter your pronoun (e.g., He/Him, She/Her)"
-                onChange={(e) =>
-                  setFreelancerDetails({
-                    ...freelancerDetails,
-                    pronoun: e.target.value,
-                  })
-                }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              />
+            {/* Right Side: Dynamic Display */}
+            <div className="w-full md:w-1/2 bg-orange-500 text-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+              <h2 className="text-xl font-bold mb-4">Profile Picture</h2>
+
+              {/* Profile Picture Upload Section */}
+              <div className="mb-4 flex flex-col items-center relative">
+                {/* Plus Symbol on top of the Profile Circle */}
+                <div
+                  className="absolute top-0 right-0 flex items-center justify-center bg-white rounded-full w-10 h-10 text-gray-700 cursor-pointer shadow-lg transform translate-x-1/5 -translate-y-1/5 font-bold text-sm"
+                  onClick={() => document.getElementById('fileInput').click()} // Trigger the hidden file input
+                >
+                  Add
+                </div>
+
+                {/* Profile Image */}
+                <img
+                  src={freelancerDetails.profilePicture || "/default-profile.png"} // Default profile picture
+                  alt="Profile"
+                  className="w-32 h-32 rounded-full object-cover  border-4 border-white"
+                />
+
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setFreelancerDetails({
+                          ...freelancerDetails,
+                          profilePicture: reader.result, // Set the uploaded image as the profile picture
+                        });
+                      };
+                      reader.readAsDataURL(file); // Convert the image to a data URL
+                    }
+                  }}
+                  className="mt-2 cursor-pointer text-sm text-gray-700 hidden"
+                />
+              </div>
+
+              {/* Display Name and Pronouns */}
+              <p className="text-5xl text-center mt-2">
+                <span className="font-semibold"></span> {freelancerDetails.name || "Your Name"}
+              </p>
+              <p className="text-3xl text-center mt-1">
+                <span className="font-semibold"></span> {freelancerDetails.pronoun || "Your Pronoun"}
+              </p>
             </div>
-          </>
+
+
+          </div>
         )}
+
+
 
         {count === 2 && (
           <>
             <h2 className="text-xl font-semibold text-center mb-4">
               Select Your Experience Level
             </h2>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-row gap-4 justify-center">
+              {/* New button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.Experience === "New"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.Experience === "New"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -150,16 +239,26 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                New
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/beginner.jpg" // Add your image path here
+                    alt="New"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Beginner</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Just getting started and learning the basics.
+                  </p>
+                </div>
               </button>
 
+              {/* Intermediate button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.Experience === "Intermediate"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.Experience === "Intermediate"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -167,16 +266,26 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                Intermediate
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/intermediate.jpg" // Add your image path here
+                    alt="Intermediate"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Intermediate</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Building on your skills with more advanced techniques.
+                  </p>
+                </div>
               </button>
 
+              {/* Expert button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.Experience === "Expert"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.Experience === "Expert"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -184,25 +293,36 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                Expert
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/pro.jpg" // Add your image path here
+                    alt="Expert"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Expert</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Mastering the craft and achieving expert-level proficiency.
+                  </p>
+                </div>
               </button>
             </div>
           </>
         )}
+
 
         {count === 3 && (
           <>
             <h2 className="text-xl font-semibold text-center mb-4">
               Select Your Goal
             </h2>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-row gap-4 justify-center">
+              {/* Earn Money button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.goal === "Earn Money"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.goal === "Earn Money"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -210,16 +330,26 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                Earn Money
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/coins.jpg" // Add your image path here
+                    alt="Earn Money"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Earn Money</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Achieve financial independence and start earning.
+                  </p>
+                </div>
               </button>
 
+              {/* Learn Skills button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.goal === "Learn Skills"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.goal === "Learn Skills"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -227,16 +357,26 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                Learn Skills
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/sidehustle.jpg" // Add your image path here
+                    alt="Learn Skills"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Learn Skills</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Improve your expertise and knowledge in your field.
+                  </p>
+                </div>
               </button>
 
+              {/* Hobby button with image and subtext */}
               <button
                 type="button"
-                className={`py-2 px-4 rounded-md border ${
-                  freelancerDetails.goal === "Hobby"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                } hover:bg-blue-400 hover:text-white`}
+                className={`w-80 py-4 px-6 rounded-lg border ${freelancerDetails.goal === "Hobby"
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700"
+                  } hover:bg-orange-400 hover:text-white shadow-lg transition duration-300 transform hover:scale-105`}
                 onClick={() =>
                   setFreelancerDetails({
                     ...freelancerDetails,
@@ -244,11 +384,22 @@ const FreelancerDashboard = () => {
                   })
                 }
               >
-                Hobby
+                <div className="flex flex-col items-center">
+                  <img
+                    src="/images/learn.jpg" // Add your image path here
+                    alt="Hobby"
+                    className="w-72 h-72 mb-2"
+                  />
+                  <span className="text-xl font-semibold">Hobby</span>
+                  <p className="text-md text-center text-gray-600 mt-2">
+                    Engage in something you love doing for fun and relaxation.
+                  </p>
+                </div>
               </button>
             </div>
           </>
         )}
+
 
         {count === 4 && (
           <>
@@ -276,7 +427,7 @@ const FreelancerDashboard = () => {
                     },
                   })
                 }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -297,7 +448,7 @@ const FreelancerDashboard = () => {
                     },
                   })
                 }
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -323,8 +474,8 @@ const FreelancerDashboard = () => {
                             skills: isChecked
                               ? [...freelancerDetails.manual.skills, skillName]
                               : freelancerDetails.manual.skills.filter(
-                                  (item) => item !== skillName
-                                ),
+                                (item) => item !== skillName
+                              ),
                           },
                         });
                       }}
@@ -343,7 +494,7 @@ const FreelancerDashboard = () => {
                   {freelancerDetails.manual.skills.map((skill, index) => (
                     <div
                       key={index}
-                      className="bg-blue-500 text-white py-1 px-3 rounded-md"
+                      className="bg-orange-500 text-white py-1 px-3 rounded-md"
                     >
                       {skill}
                     </div>
@@ -390,7 +541,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -421,7 +572,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -452,7 +603,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -482,7 +633,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -523,36 +674,36 @@ const FreelancerDashboard = () => {
             {!freelancerDetails.manual.experience[
               freelancerDetails.manual.experience.length - 1
             ].present && (
-              <div className="mb-4">
-                <label htmlFor="endDate" className="block text-sm font-medium">
-                  End Date (if applicable)
-                </label>
-                <input
-                  type="date"
-                  id="endDate"
-                  value={
-                    freelancerDetails.manual.experience[
-                      freelancerDetails.manual.experience.length - 1
-                    ].end || ""
-                  }
-                  onChange={(e) => {
-                    const updatedExperience = [
-                      ...freelancerDetails.manual.experience,
-                    ];
-                    updatedExperience[updatedExperience.length - 1].end =
-                      e.target.value;
-                    setFreelancerDetails({
-                      ...freelancerDetails,
-                      manual: {
-                        ...freelancerDetails.manual,
-                        experience: updatedExperience,
-                      },
-                    });
-                  }}
-                  className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            )}
+                <div className="mb-4">
+                  <label htmlFor="endDate" className="block text-sm font-medium">
+                    End Date (if applicable)
+                  </label>
+                  <input
+                    type="date"
+                    id="endDate"
+                    value={
+                      freelancerDetails.manual.experience[
+                        freelancerDetails.manual.experience.length - 1
+                      ].end || ""
+                    }
+                    onChange={(e) => {
+                      const updatedExperience = [
+                        ...freelancerDetails.manual.experience,
+                      ];
+                      updatedExperience[updatedExperience.length - 1].end =
+                        e.target.value;
+                      setFreelancerDetails({
+                        ...freelancerDetails,
+                        manual: {
+                          ...freelancerDetails.manual,
+                          experience: updatedExperience,
+                        },
+                      });
+                    }}
+                    className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                  />
+                </div>
+              )}
 
             <div className="mb-4">
               <label
@@ -583,7 +734,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -621,7 +772,7 @@ const FreelancerDashboard = () => {
                 onClick={() => {
                   const currentExperience =
                     freelancerDetails.manual.experience[
-                      freelancerDetails.manual.experience.length - 1
+                    freelancerDetails.manual.experience.length - 1
                     ];
 
                   // Check if the current experience is filled in
@@ -657,7 +808,7 @@ const FreelancerDashboard = () => {
                     );
                   }
                 }}
-                className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+                className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
               >
                 Add Experience
               </button>
@@ -738,7 +889,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -763,7 +914,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -788,7 +939,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
           </>
@@ -900,7 +1051,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -928,7 +1079,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
           </>
@@ -958,7 +1109,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -971,7 +1122,7 @@ const FreelancerDashboard = () => {
                 id="fee"
                 value="10%"
                 readOnly
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -988,7 +1139,7 @@ const FreelancerDashboard = () => {
                     : ""
                 }
                 readOnly
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1010,7 +1161,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1031,7 +1182,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
           </>
@@ -1062,7 +1213,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1087,7 +1238,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1112,7 +1263,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1137,7 +1288,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
 
@@ -1162,7 +1313,7 @@ const FreelancerDashboard = () => {
                     },
                   });
                 }}
-                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 p-2 bg-white border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
           </>
@@ -1173,7 +1324,7 @@ const FreelancerDashboard = () => {
             <button
               type="button"
               onClick={handleDecrement}
-              className="w-full py-2 px-4 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition"
+              className="w-full  h-20 py-3 mt-10 px-2  border border-orange text-gray-700 rounded-md hover:bg-gray-400 transition"
             >
               Prev
             </button>
@@ -1182,7 +1333,7 @@ const FreelancerDashboard = () => {
             <button
               type="button"
               onClick={handleComplete}
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
             >
               complete
             </button>
@@ -1190,7 +1341,7 @@ const FreelancerDashboard = () => {
             <button
               type="button"
               onClick={handleIncrement}
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+              className="w-full py-4 px-1 mt-10 border border-orange-500  text-orange-500 rounded-md hover:bg-orange-500 hover:text-white transition"
             >
               Next
             </button>
