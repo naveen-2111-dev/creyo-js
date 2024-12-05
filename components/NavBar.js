@@ -56,7 +56,6 @@ export default function Navbar() {
           setName(data.data.name);
           setRole(data.data.role);
 
-
           console.log(data.data.name)
           console.log(data.data.role)
 
