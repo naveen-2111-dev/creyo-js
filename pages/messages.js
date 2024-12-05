@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "@/components/NavBar";
+import "tailwindcss/tailwind.css"
 
 // Function to generate a random room ID
 const generateRoomId = () => {
