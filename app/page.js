@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/NavBar'
-// import '@/app/internation.css'
 import "../app/globals.css"
 // import "tailwindcss/tailwind.css"
+import "@/app/globals.css"
 
 const Welcome = () => {
   const [query, setQuery] = useState('')
@@ -72,7 +72,7 @@ const Welcome = () => {
 
       {/* Hero Section */}
       <div className='flex items-center justify-center min-h-[500px] bg-white px-4'>
-        <div className='flex flex-col items-center mt-10 w-full max-w-[80rem] h-auto md:h-[40rem] rounded-2xl justify-center bg-orange-500 text-white m-4 md:m-10 p-6 md:p-10 text-center bg-[length:400%_400%] animate-gradient'>
+        <div className='flex flex-col items-center mt-10 w-full max-w-[100rem] h-auto md:h-[40rem] rounded-2xl justify-center animate-gradient-shift text-white m-4 md:m-10 p-8 md:p-10 text-center bg-[length:400%_400%] animate-gradient'>
           <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-4'>We bring people together to</h1>
           <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-6'>turn ideas into reality.</h1>
           <p className='text-base md:text-lg w-full max-w-[450px] mb-8'>
@@ -142,7 +142,7 @@ const Welcome = () => {
               <button
                 key={index}
                 onClick={() => handleKeywordClick(keyword)}
-                className='px-4 py-2 border border-black text-black rounded-full hover:bg-orange-500 transition-colors shadow-sm'>
+                className='px-4 py-2 border border-black text-black rounded-full hover:bg-orange-500 hover:border-none transition-colors shadow-sm'>
                 {keyword}
               </button>
             ))}
@@ -209,7 +209,7 @@ const Welcome = () => {
           <div
             className='relative flex flex-col items-center mt-10 w-[80rem] h-[40rem] rounded-2xl border-2 border-black justify-center bg-cover bg-center bg-no-repeat m-10 p-10 text-center'
             style={{
-              backgroundImage: `url('https://img.freepik.com/free-photo/medium-shot-smiley-man-working-desk_23-2149930992.jpg?t=st=1733252345~exp=1733255945~hmac=bf6f4f9b637fe47ca20a36c26c83c5f002e8a4f045d6f65eb01b50e5a140139e&w=1380')`,
+              backgroundImage: `url('/images/home1.jpeg')`,
             }}
           >
             <div className='absolute top-0 bottom-0 left-0 w-full bg-gradient-to-r from-black to-transparent rounded-l-2xl'></div>
@@ -239,7 +239,7 @@ const Welcome = () => {
           <div
             className='relative flex mt-10 w-[80rem] h-[40rem] rounded-2xl border-2 border-black justify-end bg-cover bg-center bg-no-repeat m-10 p-10'
             style={{
-              backgroundImage: `url('https://img.freepik.com/free-photo/two-indian-business-man-suits-sitting-office-cafe-looking-laptop-drinking-coffee_627829-1501.jpg?t=st=1733254203~exp=1733257803~hmac=e19e321796df6bec93752d1096b8e8b0b51c7bc9bd03f2d6fdb345b587e47ec1&w=1380')`,
+              backgroundImage: `url('/images/home2.jpeg')`,
             }}
           >
             {/* Overlay for the right side */}
