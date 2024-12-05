@@ -2,7 +2,7 @@ import Login from "@/db/login";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 
 export default function LoginPage() {
@@ -10,18 +10,53 @@ export default function LoginPage() {
   const [pass, setPass] = useState("");
   const [change, setChange] = useState(false);
   const [role, setRole] = useState("");
+  const [secondrole, setSecondRole] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (email) {
+      fetchUserName();
+    }
+  }, [email]);
+
+  const fetchUserName = async () => {
+    try {
+      const res = await fetch("/api/welcome", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data && data.data) {
+        setSecondRole(data.data.role);
+      } else {
+        console.error("Invalid response structure", data);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   const HandleLogin = async (e) => {
     try {
       e.preventDefault();
-      const res = await Login(email, pass, role);
-      Cookies.set("accessToken", res);
 
-      if (role === "freelancer") {
-        router.push("/freelancerDashboard");
+      const userRole = role || secondrole;
+      const res = await Login(email, pass, userRole);
+      Cookies.set("accessToken", res);
+      Cookies.set("role", userRole);
+
+      if (secondrole === "freelancer") {
+        router.push("/dashboard");
+      } else if (secondrole === "client") {
+        router.push("/clientdash");
+      } else if (role === "freelancer") {
+        router.push("/dashboard");
       } else {
-        router.push("/clientDashboard");
+        router.push("/clientdash");
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +98,7 @@ export default function LoginPage() {
               </button>
             </div>
             <button
-              type="submit"
+              type="button"
               className="w-full py-2 px-4 bg-black text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105"
               onClick={HandleLogin}
             >
@@ -127,13 +162,23 @@ export default function LoginPage() {
                   Forgot password?
                 </Link>
               </div>
-              <button
-                type="button"
-                className="w-full py-3 bg-black text-white rounded-md shadow-md hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105"
-                onClick={() => setChange(!change)}
-              >
-                Next
-              </button>
+              {secondrole ? (
+                <button
+                  type="button"
+                  className="w-full py-2 px-4 bg-black text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105"
+                  onClick={HandleLogin}
+                >
+                  Login
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="w-full py-3 bg-black text-white rounded-md shadow-md hover:bg-gray-800 transition duration-300 ease-in-out transform hover:scale-105"
+                  onClick={() => setChange(!change)}
+                >
+                  Next
+                </button>
+              )}
             </form>
             <p className="mt-4 text-center text-sm text-gray-600">
               Don't have an account?{" "}
