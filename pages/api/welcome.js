@@ -16,6 +16,7 @@ export default async function POST(req, res) {
       });
     }
     const name = user.firstname;
+    const role = user.role;
 
     return res.status(200).json({
       message: "user found",
