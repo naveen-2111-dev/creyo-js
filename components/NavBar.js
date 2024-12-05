@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import CreyoLogo from "../public/images/CreyoLogo.png";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const router = useRouter()
 
   const toggleProfileCard = (e) => {
     e.preventDefault();
@@ -67,7 +69,7 @@ export default function Navbar() {
     fetchUserName();
 
   }, [isLoggedIn, mail]);
-  
+
   const logoClickHandler = (e) => {
     e.preventDefault();
     if (isLoggedIn && role) {
@@ -77,6 +79,11 @@ export default function Navbar() {
       // Redirect to the homepage if the user is not logged in
       window.location.href = "/";
     }
+  };
+  const handleLogout = () => {
+    Cookies.remove("accessToken"); // Clear the token
+    setIsLoggedIn(false); // Update the state
+    router.push("/"); // Navigate to the homepage or desired page
   };
 
   return (
@@ -165,10 +172,7 @@ export default function Navbar() {
                   </Link>
                   <div
                     className="flex items-center text-left px-3 py-2 text-sm hover:bg-red-500 hover:text-white rounded-lg cursor-pointer"
-                    onClick={() => {
-                      Cookies.remove("accessToken");
-                      setIsLoggedIn(false);
-                    }}
+                    onClick={handleLogout}
                   >
                     Logout
                   </div>

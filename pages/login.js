@@ -54,9 +54,9 @@ export default function LoginPage() {
       } else if (secondrole === "client") {
         router.push("/clientdash");
       } else if (role === "freelancer") {
-        router.push("/dashboard");
+        router.push("/freelancerDashboard");
       } else {
-        router.push("/clientdash");
+        router.push("/clientDashboard");
       }
     } catch (error) {
       console.log(error);
