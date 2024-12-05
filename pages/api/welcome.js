@@ -21,6 +21,8 @@ export default async function POST(req, res) {
       message: "user found",
       data: {
         name: name,
+
+        // role: user.role,
       },
     });
   } catch (error) {

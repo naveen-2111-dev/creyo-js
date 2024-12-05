@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/NavBar'
-// import '@/app/internation.css'
 import "../app/globals.css"
 // import "tailwindcss/tailwind.css"
+import "@/app/globals.css"
 
 const Welcome = () => {
   const [query, setQuery] = useState('')
@@ -72,7 +72,7 @@ const Welcome = () => {
 
       {/* Hero Section */}
       <div className='flex items-center justify-center min-h-[500px] bg-white px-4'>
-        <div className='flex flex-col items-center mt-10 w-full max-w-[80rem] h-auto md:h-[40rem] rounded-2xl justify-center bg-orange-500 text-white m-4 md:m-10 p-6 md:p-10 text-center bg-[length:400%_400%] animate-gradient'>
+        <div className='flex flex-col items-center mt-10 w-full max-w-[100rem] h-auto md:h-[40rem] rounded-2xl justify-center animate-gradient-shift text-white m-4 md:m-10 p-8 md:p-10 text-center bg-[length:400%_400%] animate-gradient'>
           <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-4'>We bring people together to</h1>
           <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-6'>turn ideas into reality.</h1>
           <p className='text-base md:text-lg w-full max-w-[450px] mb-8'>
@@ -142,7 +142,7 @@ const Welcome = () => {
               <button
                 key={index}
                 onClick={() => handleKeywordClick(keyword)}
-                className='px-4 py-2 border border-black text-black rounded-full hover:bg-orange-500 transition-colors shadow-sm'>
+                className='px-4 py-2 border border-black text-black rounded-full hover:bg-orange-500 hover:border-none transition-colors shadow-sm'>
                 {keyword}
               </button>
             ))}
