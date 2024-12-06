@@ -6,7 +6,8 @@ export function middleware(req) {
   const url = req.nextUrl;
 
   const protectedRoutes = {
-    "/dashboard": "Token",
+    "/dashboard/client": "Token",
+    "/dashboard/freelancer": "Token",
     "/freelancerDashboard": "accessToken",
     "/clientDashboard": "accessToken",
     "/password": "email",
@@ -26,7 +27,8 @@ export const config = {
   matcher: [
     "/Hero",
     "/password",
-    "/dashboard",
+    "/dashboard/client",
+    "/dashboard/freelancer",
     "/freelancerDashboard",
     "/clientDashboard",
   ],
