@@ -1,3 +1,5 @@
+//searching a post with some filters ir.. for lancers
+
 import ConnectDb from "@/lib/connect";
 import isAuthenticated from "../Middleware/auth";
 import Fuse from "fuse.js";
