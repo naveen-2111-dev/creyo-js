@@ -33,7 +33,6 @@ const ProfilePage = () => {
               {/* Green Dot in the top-right corner */}
               <div className="absolute top-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
             </div>
-
             <div className="flex-1">
               <h1 className="text-2xl font-bold">{user.name}</h1>
               <p className="text-gray-600 mt-2">{user.bio}</p>
@@ -68,5 +67,6 @@ const ProfilePage = () => {
     </div>
   );
 };
+
 
 export default ProfilePage;

@@ -86,7 +86,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-[#B5B5B5]  text-black w-full mx-auto p-5 px-10 flex items-center justify-between relative">
+    <nav className="bg-white border-b border-[#b5b5b5] text-black w-full mx-auto p-5 px-10 flex items-center justify-between relative">
       {/* Logo and Navigation Links */}
       <div className="flex items-center space-x-2">
         {/* Logo */}
@@ -114,7 +114,7 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="Find your next gig here!"
-                className="w-full p-2 pl-12 rounded-3xl text-black bg-white"
+                className="w-full p-2 pl-12 rounded-3xl text-black bg-white border border-gray-400"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -131,23 +131,26 @@ export default function Navbar() {
 
             {/* Profile Icon */}
             <div className="relative">
-              <button onClick={toggleProfileCard}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="44"
-                  height="44"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="white"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"
-                  />
-                </svg>
+              <button onClick={toggleProfileCard} className="group">
+                <div className="w-16 h-16 bg-gray-300 border-2 border-white rounded-full flex items-center justify-center overflow-hidden group-hover:ring-2 group-hover:ring-orange-500 transition">
+                  {/* Placeholder SVG for now; replace with an <img> tag for the profile picture */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"
+                    />
+                  </svg>
+                </div>
               </button>
+
 
               {/* Profile Card */}
               {isProfileCardVisible && (
@@ -169,6 +172,12 @@ export default function Navbar() {
                   >
                     Your Profile
                   </Link>
+                  <Link
+                    href="/messages"
+                    className="flex items-center text-left px-3 py-2 text-sm hover:bg-black hover:text-white rounded-lg cursor-pointer"
+                  >
+                    Message
+                  </Link>
                   <div
                     className="flex items-center text-left px-3 py-2 text-sm hover:bg-red-500 hover:text-white rounded-lg cursor-pointer"
                     onClick={handleLogout}
@@ -176,7 +185,7 @@ export default function Navbar() {
                     Logout
                   </div>
                 </div>
-              )}[]
+              )}
             </div>
           </>
         ) : (
@@ -184,15 +193,15 @@ export default function Navbar() {
             {/* Login Button */}
             {/* Signup Button */}
             <Link href="/signup">
-              <button className="px-6 py-2  text-white bg-[#FF8800]  font-bold text-lg rounded-lg hover:bg-white hover:text-black transition-colors">
-                Signup
+              <button className="px-6 py-2  text-white bg-[#FF8800]  font-bold text-lg rounded-lg hover:bg-white hover:text-black hover:border hover:border-black transition-colors">
+                Get Started
               </button>
             </Link>
-            <Link href="/login">
+            {/* <Link href="/login">
               <button className="px-6 py-2 bg- text-black border border-black font-bold text-lg rounded-lg hover:bg-black hover:text-white transition-colors">
                 Login
               </button>
-            </Link>
+            </Link> */}
           </>
         )}
       </div>
