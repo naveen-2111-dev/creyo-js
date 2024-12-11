@@ -29,7 +29,7 @@ export default async function POST(req, res) {
         !from ||
         !to ||
         !charge ||
-        !link ||
+        //!link ||
         !content
       ) {
         return res.status(400).json({ message: "All fields are required" });
@@ -46,7 +46,7 @@ export default async function POST(req, res) {
           message: "User not signed up",
         });
       }
-      const objId = checkUser._id;//user id
+      const objId = checkUser._id; // user id
 
       const freelancerskills = await collection.freelancer.find({}).toArray();
 
