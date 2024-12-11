@@ -1,8 +1,41 @@
+import React, { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 import Navbar from "@/components/NavBar";
 import Link from "next/link";
 
 export default function Home() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("/api/retriveUser");
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        const data = await response.json();
+        console.log("Fetched data:", data); // Log the data for debugging
+
+        // Check if data is an array
+        if (!Array.isArray(data)) {
+          throw new Error("API did not return an array");
+        }
+
+        // Filter users who have the role "client"
+        const filteredUsers = data.filter((user) => user.role === "client");
+        setUsers(filteredUsers); // Set the filtered users
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+
   return (
     <div className="bg-gray-100 h-screen flex flex-col">
       {/* Navbar */}
@@ -66,15 +99,35 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Full-Screen Card */}
+
       <div className="p-6">
-        <h1 className="text-bold text-2xl mt-10">Overview</h1>
-        <div className="grid grid-cols-1 gap-6 mt-5">
-          <div className="bg-white w-full h-[20rem] flex justify-center items-center rounded-md shadow-md hover:shadow-lg transition">
-            <h2 className="text-4xl font-bold text-gray-800">Add Works</h2>
+        <h1 className="text-bold text-2xl mt-10">Recommend Clients</h1>
+        <div className="overflow-x-auto mt-5">
+          <div className="flex space-x-6 w-max">
+            {loading ? (
+              <p className="text-gray-500">Loading users...</p>
+            ) : users.length > 0 ? (
+              users.map((user, index) => (
+                <Link key={index} href={`/profile/${user._id}`} passHref>
+                  <div
+                    className="bg-white w-60 h-[10rem] flex flex-col justify-center items-center rounded-md shadow-md hover:shadow-lg transition cursor-pointer"
+                  >
+                    {/* Display only the first name */}
+                    <h2 className="text-xl font-bold text-gray-800">
+                      {user.firstname.split(" ")[0]} {/* Extracts the first name */}
+                    </h2>
+                    <p className="text-gray-600">{user.details}</p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p className="text-gray-500">No users found</p>
+            )}
           </div>
         </div>
       </div>
+
+
 
       {/* Search by Category Section */}
       <div className="p-6">

@@ -50,9 +50,9 @@ export default function LoginPage() {
       Cookies.set("role", userRole);
 
       if (secondrole === "freelancer") {
-        router.push("/dashboard");
+        router.push("/dashboard/freelancer");
       } else if (secondrole === "client") {
-        router.push("/clientdash");
+        router.push("/dashboard/client");
       } else if (role === "freelancer") {
         router.push("/freelancerDashboard");
       } else {

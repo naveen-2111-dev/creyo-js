@@ -97,7 +97,7 @@ export default function Messages() {
                 onClick={toggleModal}
               >
                 <path
-                  strokeLinecap="round"
+                  strokeLinecap="round" 
                   strokeLinejoin="round"
                   d="M12 5v14M5 12h14"
                 />
@@ -226,7 +226,7 @@ export default function Messages() {
                   ))}
                 </ul>
               )}
-              
+
             </div>
 
             <div className="flex justify-end">

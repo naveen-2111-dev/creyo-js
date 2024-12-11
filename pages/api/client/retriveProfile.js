@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const collection = await ConnectDb(); // Connect to the database
-    const users = await collection.signup.find({}).toArray(); // Ensure correct collection reference
+    const users = await collection.Client.find({}).toArray(); // Ensure correct collection reference
 
     if (!users || users.length === 0) {
       return res.status(404).json({ message: "No users found." });
