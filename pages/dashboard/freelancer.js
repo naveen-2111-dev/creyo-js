@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 import Navbar from "@/components/NavBar";
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+
+  const handleProfileClick = () => {
+    router.push('/profile'); // Navigate to the Profile page
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,6 +43,11 @@ export default function Home() {
   }, []);
 
 
+  const handleClick = () => {
+    router.push('/startwork'); // Replace with your actual path
+  };
+
+
   return (
     <div className="bg-gray-100 h-screen flex flex-col">
       {/* Navbar */}
@@ -50,7 +62,10 @@ export default function Home() {
           </h1>
 
           {/* Start Work Button */}
-          <button className="py-2 px-4 bg-orange-500 text-white rounded-md shadow hover:bg-orange-600 transition">
+          <button
+            className="py-2 px-4 bg-orange-500 text-white rounded-md shadow hover:bg-orange-600 transition"
+            onClick={handleClick}
+          >
             Start Work
           </button>
         </div>
@@ -79,7 +94,10 @@ export default function Home() {
             <p className="text-gray-600">
               Update your profile, showcase your portfolio, and attract potential clients.
             </p>
-            <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+            <button
+              className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+              onClick={handleProfileClick}
+            >
               Go to Profile
             </button>
           </div>
