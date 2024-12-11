@@ -24,7 +24,7 @@ export default function Navbar() {
     const checkLoginStatus = () => {
       try {
         const token = Cookies.get("accessToken");
-        if (token) {
+        if (token) {  
           const decoded = jwtDecode(token);
           setMail(decoded.email);
           setIsLoggedIn(true);
