@@ -1,6 +1,7 @@
 import "tailwindcss/tailwind.css";
 import { MailIcon, PhoneIcon, CreditCardIcon } from '@heroicons/react/outline';
 import Navbar from "@/components/NavBar";
+import { jwtDecode } from "jwt-decode"; 
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import PostedJobs from '@/components/postedJobs';
@@ -8,6 +9,61 @@ import FetchBid from "@/components/fetchBid";
 
 export default function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [mail, setMail] = useState("");
+  const [name, setName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      try {
+        const token = Cookies.get("accessToken");
+        if (token) {
+          const decoded = jwtDecode(token);
+          setMail(decoded.email);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      if (isLoggedIn && mail) {
+        try {
+          const res = await fetch("/api/welcome", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: mail }),
+          });
+          const data = await res.json();
+          // console.log(data);
+          setName(data.data.name);
+          setRole(data.data.role);
+
+          console.log(data.data.name)
+          console.log(data.data.role)
+
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    };
+
+    fetchUserName();
+
+  }, [isLoggedIn, mail]);
+
+
+  const [role, setRole] = useState(""); 
   const [formData, setFormData] = useState({
     title: "",
     skill: "",
@@ -101,11 +157,11 @@ export default function Home() {
       {/* Header Section */}
       <div className="flex justify-between items-center w-3/4 mt-8">
         <h1 className="text-gray-800 text-3xl font-bold">
-          Welcome back ! <span className="text-orange-500">Vikram</span>
+          Welcome back ! <span className="text-orange-500">{name}</span>
         </h1>
         <button
           onClick={openModal}
-          className="px-7 py-6 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="px-7 py-6 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Post a Job
         </button>
@@ -324,7 +380,7 @@ export default function Home() {
       }
 
       {/* Jobs Section */}
-      <div className="mt-8 w-3/4">
+      <div className=" w-3/4">
         <FetchBid />
 
 

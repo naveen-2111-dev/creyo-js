@@ -31,27 +31,21 @@ export default function Signup() {
 
   return (
     <div className="flex h-screen bg-gray-200">
-      <div className="relative hidden lg:block w-1/2 h-full">
-        <video
-          src="/images/signup.mp4"
-          autoPlay
-          loop
-          muted
-          className="w-full h-full object-cover absolute top-0 left-0 z-0"
-          type="video/mp4"
-          disablePictureInPicture
-          style={{ pointerEvents: "none" }}
-        />
+      <div className="relative hidden lg:block w-1/2 h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/signup.svg)' }}>
+        <div className="absolute top-0 left-0 w-full h-full z-0"></div>
       </div>
 
-      <div className="flex w-full lg:w-1/2 justify-center items-center p-4 bg-white z-10 relative">
-        <div className="w-full max-w-md p-8 bg-white bg-opacity-10 rounded-lg shadow-sm backdrop-blur-md">
-          <h2 className="text-center text-xl font-semibold mb-6">
-            Welcome to Creyo
+
+
+      <div className="flex w-full lg:w-full justify-center items-center p-4 bg-white z-10 relative">
+        <div className="w-full max-w-lg p-3 bg-white bg-opacity-10 rounded-lg shadow-sm backdrop-blur-md">
+          <h2 className="text-left text-4xl font-semibold mb-[-80px]">
+            Welcome to <img src="images/CreyoLogo.png" alt="Creyo Logo" className=" mt-7 inline-block h-50 w-60" />
           </h2>
+
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-0">
               <label htmlFor="firstName" className="block mb-2">
                 First Name:
               </label>
@@ -140,7 +134,7 @@ export default function Signup() {
 
             <button
               type="submit"
-              className="w-full p-3 bg-black text-white rounded-md hover:bg-gray-800 transition font-medium"
+              className="w-full p-3 bg-orange-500 text-white rounded-md hover:bg-gray-800 transition font-medium"
             >
               Sign Up
             </button>

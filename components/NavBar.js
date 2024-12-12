@@ -8,10 +8,11 @@ import CreyoLogo from "../public/images/CreyoLogo.png";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isProfileCardVisible, setProfileCardVisible] = useState(false);
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [role, setRole] = useState("");
   const router = useRouter()
 

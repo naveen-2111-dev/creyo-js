@@ -66,13 +66,6 @@ export default function LoginPage() {
   return (
     <div className="h-screen flex">
       {/* Left Side */}
-      <div className="w-full bg-gray-50 flex flex-col justify-center items-center">
-        <img
-          src="/images/login2.gif"
-          alt="Login Illustration"
-          className="w-full h-full"
-        />
-      </div>
 
       {/* Right Side */}
       <div className="w-3/4 bg-white flex flex-col justify-center items-center p-8">
@@ -84,8 +77,8 @@ export default function LoginPage() {
             <div className="flex flex-col gap-4 justify-center items-center mb-6">
               <button
                 className={`w-full p-4 border-2 rounded-lg text-black transition duration-300 ease-in-out transform hover:scale-105 ${role === "freelancer"
-                    ? "bg-black text-white border-black"
-                    : "bg-transparent border-gray-300 hover:bg-black hover:text-white"
+                  ? "bg-black text-white border-black"
+                  : "bg-transparent border-gray-300 hover:bg-black hover:text-white"
                   }`}
                 onClick={() => setRole("freelancer")}
               >
@@ -93,8 +86,8 @@ export default function LoginPage() {
               </button>
               <button
                 className={`w-full p-4 border-2 rounded-lg text-black transition duration-300 ease-in-out transform hover:scale-105 ${role === "client"
-                    ? "bg-black text-white border-black"
-                    : "bg-transparent border-gray-300 hover:bg-black hover:text-white"
+                  ? "bg-black text-white border-black"
+                  : "bg-transparent border-gray-300 hover:bg-black hover:text-white"
                   }`}
                 onClick={() => setRole("client")}
               >
@@ -193,6 +186,10 @@ export default function LoginPage() {
             </p>
           </div>
         )}
+
+      </div>
+      <div className="relative hidden lg:block w-1/2 h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/signup.svg)' }}>
+        <div className="absolute top-0 left-0 w-full h-full z-0"></div>
       </div>
     </div>
   );
