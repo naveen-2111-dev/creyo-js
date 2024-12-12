@@ -7,14 +7,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const collection = await ConnectDb(); // Connect to the database
-    const users = await collection.freelancer.find({}).toArray(); // Ensure correct collection reference
+    await connectDb(); // Ensure the database connection is established
+    const users = await Freelancer.find({}, { honourscore: 1, name: 1 }).exec(); // Fetch only honourscore and name
 
     if (!users || users.length === 0) {
       return res.status(404).json({ message: "No users found." });
     }
 
-    return res.status(200).json(users); // Return the users directly as an array
+    // Log the honourscores individually
+    users.forEach(user => console.log("Honour Score:", user.honourscore));
+
+    const honourScores = users.map(user => ({
+      name: user.name,
+      honourscore: user.honourscore
+    }));
+
+    return res.status(200).json({ honourScores }); // Return only the honour scores
   } catch (err) {
     console.error("Error fetching users:", err);
     return res.status(500).json({ message: "Internal server error." });

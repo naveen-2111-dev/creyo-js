@@ -107,7 +107,7 @@ export default function Profile() {
           ) : userDetails ? (
             <div className="space-y-4">
               <div><strong>ID:</strong> {userDetails._id}</div>
-              <div><strong>Name:</strong> {userDetails.name}</div>
+              <div><strong>Name:</strong> {userDetails.honourscore}</div>
               <div><strong>Pronoun:</strong> {userDetails.pronoun}</div>
               <div><strong>Experience:</strong> {userDetails.experience}</div>
               <div><strong>Goal:</strong> {userDetails.goal}</div>

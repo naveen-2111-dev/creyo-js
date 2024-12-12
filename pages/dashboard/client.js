@@ -137,26 +137,18 @@ export default function Home() {
       </div>
 
       {/* Cards Section */}
-      <div className="grid grid-cols-1 h-98 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
-            <div className="bg-orange-500 border border-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
+      <div className="grid grid-cols-1 w-full  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
+            <div className="bg-orange-500 border border-orange-500 p-8 h-[18rem] w-7/9 rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
               <h2 className="text-lg font-semibold text-white mb-4">verify mail</h2>
             </div>
-
-
-          {/* Card 2 */}
-         
+          {/* Card 2 */}        
             <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
               <h2 className="text-lg font-semibold text-white mb-4">verify mobile</h2>
             </div>
-       
-
-          {/* Card 3 */}
-          
+          {/* Card 3 */}      
             <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
               <h2 className="text-lg font-semibold text-white mb-4">add bank detail</h2>
             </div>
-         
-
       </div>
       {/* Modal Section */}
       {isModalOpen && (
