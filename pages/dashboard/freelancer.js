@@ -72,7 +72,7 @@ export default function Home() {
 
         <h1 className="text-bold text-2xl mt-10">Last Update</h1>
         {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-5">
           {/* Card 1 */}
           <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
@@ -112,6 +112,18 @@ export default function Home() {
             </p>
             <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
               Explore Now
+            </button>
+          </div> 
+          {/* Card 4 */}
+          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              test skills
+            </h2>
+            <p className="text-gray-600">
+              Write the test and get Recommended more
+            </p>
+            <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition" onClick={() => router.push("/test")} >
+              test Now
             </button>
           </div>
         </div>

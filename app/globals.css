@@ -36,4 +36,36 @@ body {
     background-position: 0% 50%;
   }
 }
+/* CSS for the green and red animations */
+@keyframes fillGreen {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fillRed {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-fillGreen {
+  animation: fillGreen 1s ease-in-out forwards;
+}
+
+.animate-fillRed {
+  animation: fillRed 1s ease-in-out forwards;
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+}
+
 
