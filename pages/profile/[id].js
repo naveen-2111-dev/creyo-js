@@ -22,6 +22,7 @@ const ProfilePage = () => {
         .then((res) => res.json())
         .then((data) => {
           setUserDetails(data);
+          console.log(data)
           setLoading(false);
         })
         .catch((err) => {
@@ -61,30 +62,6 @@ const ProfilePage = () => {
               <p className="mt-4 text-gray-800"><strong>Location: {userDetails.country}</strong> {userDetails.location}</p>
               <p className="mt-1 text-gray-800"><strong>Hourly Rate:</strong> {userDetails.hourlyRate}</p>
             </div>
-          </div>
-
-          {/* Skills Section */}
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold">Skills</h3>
-            <ul className="list-none mt-2">
-              {userDetails.skills && userDetails.skills.map((skill, index) => (
-                <li key={index} className="inline-block mr-4 mt-2 px-4 py-2 bg-gray-200 text-gray-800 rounded-full text-sm">
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Languages Section */}
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold">Languages</h3>
-            <ul className="list-none mt-2">
-              {userDetails.languages && userDetails.languages.map((language, index) => (
-                <li key={index} className="inline-block mr-4 mt-2 px-4 py-2 bg-gray-200 text-gray-800 rounded-full text-sm">
-                  {language}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

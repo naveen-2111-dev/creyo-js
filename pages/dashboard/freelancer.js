@@ -21,7 +21,7 @@ export default function Home() {
 
 
   const handleProfileClick = () => {
-    router.push('/profile'); // Navigate to the Profile page
+    router.push('/leaderboard'); // Navigate to the Profile page
   };
   useEffect(() => {
     const checkLoginStatus = () => {
@@ -161,16 +161,16 @@ export default function Home() {
     {/* Card 2 */}
     <div className="relative bg-white p-6 rounded-md shadow-md hover:shadow-lg transition h-[15rem]"> {/* Increased height of the card */}
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        View Profile
+        Check A LeaderBoard
       </h2>
       <p className="text-gray-600">
-        Update your profile, showcase your portfolio, and attract potential clients.
+        Check where you are around the world
       </p>
       <button
         className="absolute bottom-4 left-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
         onClick={handleProfileClick}
       >
-        Go to Profile
+        Go to leaderboard
       </button>
     </div>
 
