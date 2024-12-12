@@ -12,7 +12,6 @@ export default function Navbar() {
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [role, setRole] = useState("");
   const router = useRouter()
 
