@@ -4,7 +4,7 @@ import isAuthenticated from "../Middleware/auth";
 export default async function POST(req, res) {
   await isAuthenticated(req, res, async () => {
     try {
-      const { email } = req.body;
+      const email = req.user.email
       if (!email) {
         return res.status(404).json({
           message: "email not found",
