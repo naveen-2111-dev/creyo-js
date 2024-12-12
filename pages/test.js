@@ -50,41 +50,643 @@ const questionsData = {
       options: ["[0, 2, 4, 6, 8, 10]", "[0, 2, 4, 6, 8]", "[1, 3, 5, 7, 9]", "[2, 4, 6, 8, 10]"],
       answer: "[0, 2, 4, 6, 8]",
     },
+    {
+      question: "What is the result of the expression len('Hello')?",
+      options: ["4", "5", "6", "3"],
+      answer: "5",
+    },
+    {
+      question: "Which of the following is a Python function to add an element to a list?",
+      options: ["append()", "add()", "push()", "insert()"],
+      answer: "append()",
+    },
+    // Add the other Python questions here...
   ],
   Java: [
     {
-      question: "What is the primary purpose of the Java Virtual Machine (JVM)?",
+      question: "What is the output of the following Java code: `System.out.println(3 + 2 * 2);`?",
+      options: ["7", "10", "5", "8"],
+      answer: "7",
+    },
+    {
+      question: "Which of the following keywords is used to prevent a class from being subclassed?",
+      options: ["final", "static", "private", "abstract"],
+      answer: "final",
+    },
+    {
+      question: "What is the default value of a boolean variable in Java?",
+      options: ["true", "false", "0", "null"],
+      answer: "false",
+    },
+    {
+      question: "Which of the following is not a valid Java data type?",
+      options: ["int", "double", "float", "number"],
+      answer: "number",
+    },
+    {
+      question: "What is the purpose of the `transient` keyword in Java?",
       options: [
-        "To compile Java code",
-        "To execute Java bytecode",
-        "To manage memory directly",
-        "To provide a graphical user interface"
+        "To mark a method as abstract",
+        "To prevent serialization of a variable",
+        "To define a constant variable",
+        "To create a thread-safe class"
       ],
-      answer: "To execute Java bytecode",
+      answer: "To prevent serialization of a variable",
+    },
+    {
+      question: "What will be the output of the following Java code: `String str = 'Java'; System.out.println(str.substring(1, 3));`?",
+      options: ["Ja", "av", "va", "a"],
+      answer: "av",
+    },
+    {
+      question: "Which method is used to start a thread in Java?",
+      options: ["run()", "start()", "execute()", "init()"],
+      answer: "start()",
+    },
+    {
+      question: "Which of the following is used to handle exceptions in Java?",
+      options: ["throw", "try-catch", "exception", "handle"],
+      answer: "try-catch",
+    },
+    {
+      question: "What is the output of the following code: `System.out.println(3.0 / 2);`?",
+      options: ["1.5", "1", "1.0", "Error"],
+      answer: "1.5",
+    },
+    {
+      question: "Which method is used to convert a string to a number in Java?",
+      options: ["parseInt()", "toInteger()", "parseFloat()", "convert()"],
+      answer: "parseInt()",
+    },
+    {
+      question: "What is the purpose of the `super` keyword in Java?",
+      options: [
+        "To refer to the parent class",
+        "To define a constructor",
+        "To call the subclass method",
+        "To refer to the current class"
+      ],
+      answer: "To refer to the parent class",
+    },
+    {
+      question: "Which of the following is not a valid access modifier in Java?",
+      options: ["public", "private", "protected", "global"],
+      answer: "global",
+    },
+    {
+      question: "Which method is used to compare two strings in Java?",
+      options: ["==", "compareTo()", "equals()", "compare()"],
+      answer: "equals()",
+    },
+    {
+      question: "What is the default value of an instance variable of type `int` in Java?",
+      options: ["0", "1", "null", "undefined"],
+      answer: "0",
+    },
+    {
+      question: "What is the purpose of the `final` keyword in Java?",
+      options: [
+        "To mark a class as abstract",
+        "To mark a method as static",
+        "To mark a variable as constant",
+        "To mark a method as private"
+      ],
+      answer: "To mark a variable as constant",
+    },
+    {
+      question: "Which of the following is a feature of Java?",
+      options: [
+        "Platform-dependent",
+        "Object-oriented",
+        "Non-distributed",
+        "Uses pointers"
+      ],
+      answer: "Object-oriented",
+    },
+    {
+      question: "Which of the following is used to define a package in Java?",
+      options: ["package", "import", "define", "export"],
+      answer: "package",
+    },
+    {
+      question: "What is the purpose of the `this` keyword in Java?",
+      options: [
+        "Refers to the current instance of a class",
+        "Refers to the superclass",
+        "Refers to the parent method",
+        "Refers to the constructor"
+      ],
+      answer: "Refers to the current instance of a class",
+    },
+    {
+      question: "Which of the following classes is part of the `java.util` package?",
+      options: ["ArrayList", "String", "Integer", "System"],
+      answer: "ArrayList",
+    },
+    {
+      question: "What is the result of `10 / 3` in Java?",
+      options: ["3.0", "3", "3.3333", "Error"],
+      answer: "3",
+    },
+    {
+      question: "Which of the following is true about Java arrays?",
+      options: [
+        "Arrays in Java are dynamically sized",
+        "Arrays can only store primitive data types",
+        "Arrays are indexed from 1",
+        "Arrays can store elements of the same type only"
+      ],
+      answer: "Arrays can store elements of the same type only",
+    },
+    {
+      question: "Which of the following methods is used to find the length of a string in Java?",
+      options: ["length()", "size()", "getLength()", "length"],
+      answer: "length()",
+    },
+    {
+      question: "What will be the output of the following code: `String str = 'Hello'; System.out.println(str.charAt(2));`?",
+      options: ["H", "e", "l", "o"],
+      answer: "l",
+    },
+    {
+      question: "What is the output of the following Java code: `int[] arr = {1, 2, 3}; System.out.println(arr.length);`?",
+      options: ["3", "1", "2", "Error"],
+      answer: "3",
+    },
+    {
+      question: "Which of the following is used to start a thread in Java?",
+      options: ["start()", "run()", "initialize()", "create()"],
+      answer: "start()",
+    },
+    {
+      question: "What will be the output of the following Java code: `System.out.println(2 + 3 + '4');`?",
+      options: ["23", "54", "7", "Error"],
+      answer: "23",
+    },
+    {
+      question: "What is the purpose of the `clone()` method in Java?",
+      options: [
+        "To duplicate an object",
+        "To initialize a new object",
+        "To delete an object",
+        "To compare two objects"
+      ],
+      answer: "To duplicate an object",
+    },
+    {
+      question: "Which of the following statements about Java interfaces is correct?",
+      options: [
+        "Interfaces can contain method implementations",
+        "Interfaces cannot extend other interfaces",
+        "A class can implement multiple interfaces",
+        "Interfaces cannot be inherited"
+      ],
+      answer: "A class can implement multiple interfaces",
+    },
+    {
+      question: "What is the output of the following code: `System.out.println('a' + 1);`?",
+      options: ["97", "98", "99", "100"],
+      answer: "98",
+    },
+    {
+      question: "Which of the following exceptions is thrown when an array index is out of bounds?",
+      options: ["ArrayIndexOutOfBoundsException", "NullPointerException", "IllegalArgumentException", "ClassCastException"],
+      answer: "ArrayIndexOutOfBoundsException",
+    },
+    {
+      question: "Which of the following is not a valid identifier in Java?",
+      options: ["_variable", "$variable", "1variable", "variable1"],
+      answer: "1variable",
+    },
+    {
+      question: "What will be the output of the following Java code: `System.out.println(5.0 / 2);`?",
+      options: ["2.5", "2", "3", "Error"],
+      answer: "2.5",
+    },
+    {
+      question: "Which of the following is not a valid method to synchronize a block of code in Java?",
+      options: ["synchronized block", "synchronized method", "using locks", "using semaphores"],
+      answer: "using semaphores",
+    },
+    {
+      question: "Which of the following collections does not allow duplicates?",
+      options: ["List", "Set", "Queue", "Deque"],
+      answer: "Set",
+    },
+    {
+      question: "Which method is used to get the class of an object in Java?",
+      options: ["getClass()", "getObject()", "class()", "objectClass()"],
+      answer: "getClass()",
+    },
+    {
+      question: "What is the default value of a local variable in Java?",
+      options: ["null", "0", "undefined", "No default value"],
+      answer: "No default value",
+    },
+    {
+      question: "Which of the following methods is used to stop a thread in Java?",
+      options: ["stop()", "pause()", "terminate()", "exit()"],
+      answer: "stop()",
     },
   ],
-  c :[
+  C: [
     {
-      question: "What is the primary purpose of the Java Virtual Machine (JVM)?",
+      question: "What is the output of the following code: `int a = 5; printf('%d', a++);`?",
+      options: ["5", "6", "Error", "undefined behavior"],
+      answer: "5",
+    },
+    {
+      question: "Which of the following is true about the `malloc` function?",
       options: [
-        "To compile Java code",
-        "To execute Java bytecode",
-        "To manage memory directly",
-        "To provide a graphical user interface"
+        "It initializes memory to zero",
+        "It returns a pointer to allocated memory",
+        "It automatically frees allocated memory",
+        "None of the above"
       ],
-      answer: "To execute Java bytecode",
+      answer: "It returns a pointer to allocated memory",
+    },
+    {
+      question: "What is the result of the following C code: `int x = 10; printf('%d', ++x + x++);`?",
+      options: ["21", "22", "20", "23"],
+      answer: "21",
+    },
+    {
+      question: "Which of the following is the correct way to declare a constant pointer to an integer in C?",
+      options: [
+        "int const *ptr;",
+        "const int *ptr;",
+        "int *const ptr;",
+        "const *int ptr;"
+      ],
+      answer: "int *const ptr;",
+    },
+    {
+      question: "What will be the output of the following code: `int i = 0; printf('%d', ++i + ++i);`?",
+      options: ["1", "2", "3", "Undefined behavior"],
+      answer: "Undefined behavior",
+    },
+    {
+      question: "Which function is used to get the length of a string in C?",
+      options: ["strlen()", "sizeof()", "strlength()", "length()"],
+      answer: "strlen()",
+    },
+    {
+      question: "What will the following C code print? `int arr[] = {1, 2, 3}; printf('%d', *arr + 1);`",
+      options: ["1", "2", "3", "Error"],
+      answer: "2",
+    },
+    {
+      question: "Which of the following C constructs is used to handle errors?",
+      options: ["try-catch", "throw", "exception", "setjmp-longjmp"],
+      answer: "setjmp-longjmp",
+    },
+    {
+      question: "What is the size of a pointer on a 64-bit machine?",
+      options: ["4 bytes", "8 bytes", "16 bytes", "Depends on the type of pointer"],
+      answer: "8 bytes",
+    },
+    {
+      question: "In C, what is the default value of an uninitialized static variable?",
+      options: ["0", "1", "NULL", "Undefined"],
+      answer: "0",
+    },
+    {
+      question: "Which of the following C functions is used to allocate memory dynamically?",
+      options: ["malloc()", "calloc()", "realloc()", "All of the above"],
+      answer: "All of the above",
+    },
+    {
+      question: "What is the result of the following C expression: `printf('%d', 5 + 5 * 2);`?",
+      options: ["15", "10", "20", "25"],
+      answer: "15",
+    },
+    {
+      question: "What is the value of `x` after the following C code executes? `int x = 5; x = x++ + ++x;`",
+      options: ["10", "11", "12", "Undefined behavior"],
+      answer: "Undefined behavior",
+    },
+    {
+      question: "Which of the following is not a valid way to pass arguments to a function in C?",
+      options: ["By reference", "By value", "By pointer", "All of the above are valid"],
+      answer: "All of the above are valid",
+    },
+    {
+      question: "In C, how do you declare an array of 10 integers?",
+      options: ["int arr[10];", "int[10] arr;", "int arr(10);", "int arr{10};"],
+      answer: "int arr[10];",
+    },
+    {
+      question: "What will be the output of the following code: `int a = 5, b = 2; printf('%d', a / b);`?",
+      options: ["2.5", "2", "3", "Error"],
+      answer: "2",
+    },
+    {
+      question: "Which of the following is true about the `free()` function in C?",
+      options: [
+        "It deallocates the memory assigned to a pointer",
+        "It initializes memory to zero",
+        "It automatically reallocates memory",
+        "None of the above"
+      ],
+      answer: "It deallocates the memory assigned to a pointer",
+    },
+    {
+      question: "What will be the output of the following C code: `int i = 10; printf('%d', i++ * 2);`?",
+      options: ["20", "22", "18", "10"],
+      answer: "20",
+    },
+    {
+      question: "Which of the following is the correct way to define a function prototype in C?",
+      options: [
+        "int add(int a, int b);",
+        "int add(a, b) int a, b;",
+        "void add(int a, int b);",
+        "void add(a, b);"
+      ],
+      answer: "int add(int a, int b);",
+    },
+    {
+      question: "What is the result of the following C code: `int a = 10; printf('%d', ++a * 5);`?",
+      options: ["50", "55", "10", "5"],
+      answer: "55",
+    },
+    {
+      question: "What is the output of the following C code: `int a = 10; printf('%d', a++ + a++);`?",
+      options: ["20", "21", "22", "Undefined behavior"],
+      answer: "Undefined behavior",
+    },
+    {
+      question: "Which of the following is a feature of C?",
+      options: ["Object-oriented", "Low-level memory manipulation", "Garbage collection", "Automatic memory management"],
+      answer: "Low-level memory manipulation",
+    },
+    {
+      question: "What is the result of the following C code: `int x = 3; printf('%d', ++x * x--);`?",
+      options: ["6", "9", "12", "Undefined behavior"],
+      answer: "6",
+    },
+    {
+      question: "What is the difference between `++x` and `x++` in C?",
+      options: [
+        "There is no difference",
+        "`++x` increments the value before usage, `x++` increments after usage",
+        "`x++` increments the value before usage, `++x` increments after usage",
+        "None of the above"
+      ],
+      answer: "`++x` increments the value before usage, `x++` increments after usage",
+    },
+    {
+      question: "What is the result of the following C code: `int x = 5; printf('%d', x++ * ++x);`?",
+      options: ["30", "35", "25", "Undefined behavior"],
+      answer: "Undefined behavior",
+    },
+    {
+      question: "What is the output of the following code? `int a = 5; printf('%d', a && 0);`",
+      options: ["5", "0", "1", "Error"],
+      answer: "0",
+    },
+    {
+      question: "What is the output of the following C code: `int x = 4; printf('%d', x & 3);`?",
+      options: ["0", "1", "2", "3"],
+      answer: "0",
+    },
+    {
+      question: "What is the size of the `int` data type in C on a 32-bit machine?",
+      options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the compiler"],
+      answer: "4 bytes",
+    },
+    {
+      question: "What will the following code print? `int x = 10; int *p = &x; printf('%d', *p);`",
+      options: ["10", "x", "Error", "Undefined behavior"],
+      answer: "10",
+    },
+    {
+      question: "Which of the following is true about C functions?",
+      options: [
+        "A function must always return a value",
+        "A function can return only one value",
+        "A function can accept multiple return types",
+        "A function can return multiple values using pointers"
+      ],
+      answer: "A function can return multiple values using pointers",
+    },
+    {
+      question: "What is the result of the following C code: `int x = 1, y = 2; printf('%d', x & y);`?",
+      options: ["0", "1", "2", "3"],
+      answer: "0",
+    },
+    {
+      question: "Which operator is used for bitwise XOR in C?",
+      options: ["^", "&", "|", "~"],
+      answer: "^",
+    },
+    {
+      question: "What will the following code print? `int arr[] = {10, 20, 30}; printf('%d', *(arr + 1));`",
+      options: ["10", "20", "30", "Undefined behavior"],
+      answer: "20",
+    },
+    {
+      question: "What is the use of `typedef` in C?",
+      options: [
+        "To create an alias for a data type",
+        "To define functions",
+        "To declare variables",
+        "To define constants"
+      ],
+      answer: "To create an alias for a data type",
     },
   ],
-  dsa:[
+  DSA: [
     {
-      question: "What is the primary purpose of the Java Virtual Machine (JVM)?",
-      options: [
-        "To compile Java code",
-        "To execute Java bytecode",
-        "To manage memory directly",
-        "To provide a graphical user interface"
-      ],
-      answer: "To execute Java bytecode",
+      question: "What is the time complexity of accessing an element in an array?",
+      options: ["O(n)", "O(log n)", "O(1)", "O(n^2)"],
+      answer: "O(1)",
+    },
+    {
+      question: "Which of the following is not a type of tree in data structures?",
+      options: ["Binary Tree", "AVL Tree", "Red-Black Tree", "Heap Tree"],
+      answer: "Heap Tree",
+    },
+    {
+      question: "What is the best case time complexity for QuickSort?",
+      options: ["O(n log n)", "O(n^2)", "O(log n)", "O(n)"],
+      answer: "O(n log n)",
+    },
+    {
+      question: "Which data structure is used for implementing recursion?",
+      options: ["Queue", "Stack", "Linked List", "Array"],
+      answer: "Stack",
+    },
+    {
+      question: "What is the time complexity of inserting an element at the beginning of a singly linked list?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      answer: "O(1)",
+    },
+    {
+      question: "Which of the following is a stable sorting algorithm?",
+      options: ["QuickSort", "MergeSort", "HeapSort", "SelectionSort"],
+      answer: "MergeSort",
+    },
+    {
+      question: "Which of the following is an example of a greedy algorithm?",
+      options: ["Dijkstra's Algorithm", "MergeSort", "Binary Search", "QuickSort"],
+      answer: "Dijkstra's Algorithm",
+    },
+    {
+      question: "Which of the following operations is expensive for a linked list compared to an array?",
+      options: ["Accessing an element", "Inserting an element", "Deleting an element", "None of the above"],
+      answer: "Accessing an element",
+    },
+    {
+      question: "In which data structure is the heap used?",
+      options: ["Stack", "Queue", "Priority Queue", "Linked List"],
+      answer: "Priority Queue",
+    },
+    {
+      question: "What is the time complexity of binary search?",
+      options: ["O(n)", "O(log n)", "O(n^2)", "O(1)"],
+      answer: "O(log n)",
+    },
+    {
+      question: "Which of the following is not a characteristic of a graph?",
+      options: ["Nodes", "Edges", "Weight", "Queue"],
+      answer: "Queue",
+    },
+    {
+      question: "Which algorithm is used for finding the shortest path in a graph?",
+      options: ["Bellman-Ford", "QuickSort", "MergeSort", "Breadth-First Search"],
+      answer: "Bellman-Ford",
+    },
+    {
+      question: "In a binary tree, what is the maximum number of nodes at level 'l'?",
+      options: ["2^l", "l^2", "2^l - 1", "l"],
+      answer: "2^l",
+    },
+    {
+      question: "Which of the following is not a valid tree traversal method?",
+      options: ["In-order", "Pre-order", "Post-order", "Breadth-order"],
+      answer: "Breadth-order",
+    },
+    {
+      question: "Which of the following is a property of a max heap?",
+      options: ["Parent node is always smaller than child nodes", "Parent node is always larger than child nodes", "Each node is less than its sibling", "None of the above"],
+      answer: "Parent node is always larger than child nodes",
+    },
+    {
+      question: "What is the time complexity of accessing an element in a hash table?",
+      options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+      answer: "O(1)",
+    },
+    {
+      question: "What type of algorithm is MergeSort?",
+      options: ["Divide and conquer", "Greedy", "Dynamic programming", "Backtracking"],
+      answer: "Divide and conquer",
+    },
+    {
+      question: "Which data structure is used to implement a depth-first search (DFS)?",
+      options: ["Queue", "Stack", "Linked List", "Array"],
+      answer: "Stack",
+    },
+    {
+      question: "Which of the following is an advantage of a doubly linked list over a singly linked list?",
+      options: ["Faster traversal", "Less memory usage", "Easier insertion and deletion", "None of the above"],
+      answer: "Easier insertion and deletion",
+    },
+    {
+      question: "Which of the following is true for a circular linked list?",
+      options: ["The last node points to the first node", "The first node points to the last node", "There are no next pointers", "None of the above"],
+      answer: "The last node points to the first node",
+    },
+    {
+      question: "What is the main disadvantage of a stack data structure?",
+      options: ["It allows random access to elements", "It is difficult to implement", "It follows LIFO order", "It has a fixed size"],
+      answer: "It follows LIFO order",
+    },
+    {
+      question: "Which of the following is not a type of graph traversal?",
+      options: ["Depth-first search", "Breadth-first search", "Hashing", "None of the above"],
+      answer: "Hashing",
+    },
+    {
+      question: "What is the worst-case time complexity of QuickSort?",
+      options: ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"],
+      answer: "O(n^2)",
+    },
+    {
+      question: "What is the space complexity of MergeSort?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      answer: "O(n)",
+    },
+    {
+      question: "Which data structure is typically used for a breadth-first search (BFS)?",
+      options: ["Queue", "Stack", "Array", "Hash Table"],
+      answer: "Queue",
+    },
+    {
+      question: "Which of the following is not a type of linked list?",
+      options: ["Singly Linked List", "Doubly Linked List", "Circular Linked List", "Binary Linked List"],
+      answer: "Binary Linked List",
+    },
+    {
+      question: "What is the primary advantage of a hash table?",
+      options: ["Fast access", "Ordered data", "Efficient memory usage", "None of the above"],
+      answer: "Fast access",
+    },
+    // Additional DSA questions
+    {
+      question: "Which sorting algorithm works by repeatedly selecting the minimum element from the unsorted part?",
+      options: ["Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort"],
+      answer: "Selection Sort",
+    },
+    {
+      question: "In a binary search tree, what is the property of the left child node?",
+      options: ["It is greater than the parent node", "It is less than the parent node", "It is equal to the parent node", "None of the above"],
+      answer: "It is less than the parent node",
+    },
+    {
+      question: "Which algorithm is most efficient for sorting an array of size n?",
+      options: ["Bubble Sort", "Merge Sort", "Quick Sort", "Selection Sort"],
+      answer: "Merge Sort",
+    },
+    {
+      question: "What is the main difference between a stack and a queue?",
+      options: ["A stack uses LIFO and a queue uses FIFO", "A stack uses FIFO and a queue uses LIFO", "Both are the same", "None of the above"],
+      answer: "A stack uses LIFO and a queue uses FIFO",
+    },
+    {
+      question: "What is the time complexity of the Breadth-First Search (BFS) algorithm?",
+      options: ["O(n)", "O(log n)", "O(n^2)", "O(n + m)"],
+      answer: "O(n + m)",
+    },
+    {
+      question: "Which of the following algorithms is used for finding the minimum spanning tree of a graph?",
+      options: ["Dijkstra’s Algorithm", "Prim’s Algorithm", "Bellman-Ford", "Kruskal’s Algorithm"],
+      answer: "Prim’s Algorithm",
+    },
+    {
+      question: "In a doubly linked list, what is stored in each node?",
+      options: ["Only data", "Data and next pointer", "Data, next pointer, and previous pointer", "Data and previous pointer"],
+      answer: "Data, next pointer, and previous pointer",
+    },
+    {
+      question: "What is the time complexity of searching for an element in a binary search tree?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      answer: "O(log n)",
+    },
+    {
+      question: "Which of the following is an example of a dynamic programming problem?",
+      options: ["Fibonacci sequence", "QuickSort", "MergeSort", "Dijkstra’s algorithm"],
+      answer: "Fibonacci sequence",
+    },
+    {
+      question: "Which algorithm is used to detect a cycle in a directed graph?",
+      options: ["DFS", "BFS", "Kruskal’s Algorithm", "Dijkstra’s Algorithm"],
+      answer: "DFS",
+    },
+    {
+      question: "What is the worst-case time complexity of inserting an element into a balanced binary search tree?",
+      options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+      answer: "O(log n)",
     },
   ],
 };
