@@ -13,6 +13,7 @@ export default function Home() {
   const handleProfileClick = () => {
     router.push('/profile'); // Navigate to the Profile page
   };
+  
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -97,7 +98,7 @@ export default function Home() {
             <button
               className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
               onClick={handleProfileClick}
-            >
+            > 
               Go to Profile
             </button>
           </div>

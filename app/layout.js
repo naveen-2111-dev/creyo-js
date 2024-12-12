@@ -1,5 +1,6 @@
 import Head from "next/head";
 import "./globals.css";
+import { UserProvider } from "../context/UserContext";  // Import UserContext
 
 export const metadata = {
   title: "creyo",
@@ -12,7 +13,11 @@ export default function RootLayout({ children }) {
         <Head>
           <title>Creyo</title>
         </Head>
-        {children}
+        
+        {/* Wrap the entire app with UserProvider */}
+        <UserProvider>
+          {children}
+        </UserProvider>
       </body>
     </html>
   );
