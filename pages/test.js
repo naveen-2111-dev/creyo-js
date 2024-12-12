@@ -889,7 +889,9 @@ const icons = {
               <button
                 key={topic}
                 className="w-64 h-64 rounded-lg bg-blue-500 pt-30 text-white hover:bg-blue-600 transition-all flex flex-col items-center justify-center"
-                onClick={() => startTest(topic)}
+                onClick={() => 
+                console.log("clicke")
+                }
               >
                 {icons[topic]}
                 <span className="mt-2">{topic}</span>

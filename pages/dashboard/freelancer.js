@@ -158,47 +158,67 @@ export default function Home() {
       </div>
 
 
-
-      {/* Search by Category Section */}
-      <div className="p-6">
-        <h1 className="text-bold text-2xl mt-10">Find work by Category</h1>
-        <div className="grid grid-cols-1 h-98 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
-          {/* Card 1 */}
-          <Link href="/search/web-development" passHref>
-            <div className="bg-orange-500 border border-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
-              <h2 className="text-lg font-semibold text-white mb-4">Web Development</h2>
-            </div>
-          </Link>
-
-          {/* Card 2 */}
-          <Link href="/search/graphic-design" passHref>
-            <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
-              <h2 className="text-lg font-semibold text-white mb-4">Graphic Design</h2>
-            </div>
-          </Link>
-
-          {/* Card 3 */}
-          <Link href="/search/writing" passHref>
-            <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
-              <h2 className="text-lg font-semibold text-white mb-4">Writing</h2>
-            </div>
-          </Link>
-
-          {/* Card 4 */}
-          <Link href="/search/digital-marketing" passHref>
-            <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
-              <h2 className="text-lg font-semibold text-white mb-4">Digital Marketing</h2>
-            </div>
-          </Link>
-
-          {/* Card 5 */}
-          <Link href="/search/consulting" passHref>
-            <div className="bg-orange-500 p-8 h-[18rem] rounded-md shadow-md hover:shadow-lg transition cursor-pointer">
-              <h2 className="text-lg font-semibold text-white mb-4">Consulting</h2>
-            </div>
-          </Link>
-        </div>
+{/* Search by Category Section */}
+<div className="p-6">
+  <h1 className="text-bold text-2xl mt-10">Find work by Category</h1>
+  <div className="grid grid-cols-1 h-98 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-5">
+    {/* Card 1 */}
+    <Link href="/search/web-development" passHref>
+      <div
+        className="relative bg-[url('/images/web-dev.jpg')] bg-cover bg-center border border-orange-500 h-[18rem] rounded-md shadow-md hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+      >
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 rounded-md"></div>
+        <h2 className="absolute bottom-4 left-4 text-lg font-semibold text-white z-10">Web Development</h2>
       </div>
+    </Link>
+
+    {/* Card 2 */}
+    <Link href="/search/graphic-design" passHref>
+      <div
+        className="relative bg-[url('/images/graphic.jpg')] bg-cover bg-center border border-orange-500 h-[18rem] rounded-md shadow-md hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+      >
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 rounded-md"></div>
+        <h2 className="absolute bottom-4 left-4 text-lg font-semibold text-white z-10">Graphic Design</h2>
+      </div>
+    </Link>
+
+    {/* Card 3 */}
+    <Link href="/search/writing" passHref>
+      <div
+        className="relative bg-[url('/images/writing.jpg')] bg-cover bg-center border border-orange-500 h-[18rem] rounded-md shadow-md hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+      >
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 rounded-md"></div>
+        <h2 className="absolute bottom-4 left-4 text-lg font-semibold text-white z-10">Writing</h2>
+      </div>
+    </Link>
+
+    {/* Card 4 */}
+    <Link href="/search/digital-marketing" passHref>
+      <div
+        className="relative bg-[url('/images/digital.jpg')] bg-cover bg-center border border-orange-500 h-[18rem] rounded-md shadow-md hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+      >
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 rounded-md"></div>
+        <h2 className="absolute bottom-4 left-4 text-lg font-semibold text-white z-10">Digital Marketing</h2>
+      </div>
+    </Link>
+
+    {/* Card 5 */}
+    <Link href="/search/consulting" passHref>
+      <div
+        className="relative bg-[url('/images/consulting.jpg')] bg-cover bg-center border border-orange-500 h-[18rem] rounded-md shadow-md hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+      >
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 rounded-md"></div>
+        <h2 className="absolute bottom-4 left-4 text-lg font-semibold text-white z-10 stroke-black-6px">Consulting</h2>
+      </div>
+    </Link>
+  </div>
+</div>
+
 
     </div >
   );
