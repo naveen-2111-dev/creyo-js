@@ -24,7 +24,7 @@ export default async function POST(req, res) {
 
       if (!posts) {
         return res.status(401).json({
-          error: "failed to fetch the data",
+          error: "failed to fetch the data",  
         });
       }
 

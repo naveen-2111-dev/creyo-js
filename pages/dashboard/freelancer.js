@@ -1,18 +1,76 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 import Navbar from "@/components/NavBar";
+import { jwtDecode } from "jwt-decode";
+
 import Link from "next/link";
+import Cookies from "js-cookie";
+
 import { useRouter } from 'next/router';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [mail, setMail] = useState("");
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState("");
+
   const router = useRouter();
 
 
   const handleProfileClick = () => {
     router.push('/profile'); // Navigate to the Profile page
   };
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      try {
+        const token = Cookies.get("accessToken");
+        if (token) {
+          const decoded = jwtDecode(token);
+          setMail(decoded.email);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      if (isLoggedIn && mail) {
+        try {
+          const res = await fetch("/api/welcome", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: mail }),
+          });
+          const data = await res.json();
+          // console.log(data);
+          setName(data.data.name);
+          setRole(data.data.role);
+
+          console.log(data.data.name)
+          console.log(data.data.role)
+
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    };
+
+    fetchUserName();
+
+  }, [isLoggedIn, mail]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -42,10 +100,22 @@ export default function Home() {
     fetchUsers();
   }, []);
 
-
   const handleClick = () => {
     router.push('/startwork'); // Replace with your actual path
   };
+
+  const [greeting, setGreeting] = useState("");
+  useEffect(() => {
+    const currentHour = new Date().getHours(); // Get the current hour (0-23)
+
+    if (currentHour >= 5 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, []);
 
 
   return (
@@ -58,7 +128,7 @@ export default function Home() {
         {/* Greeting */}
         <div className="flex justify-between items-center">
           <h1 className="text-gray-800 text-3xl font-bold">
-            Good Morning, <span className="text-orange-500">username</span>
+            {greeting}, <span className="text-orange-500">{name}</span>
           </h1>
 
           {/* Start Work Button */}
@@ -113,7 +183,7 @@ export default function Home() {
             <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
               Explore Now
             </button>
-          </div> 
+          </div>
           {/* Card 4 */}
           <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
