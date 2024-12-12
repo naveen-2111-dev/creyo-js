@@ -142,91 +142,101 @@ export default function Home() {
 
         <h1 className="text-bold text-2xl mt-10">Last Update</h1>
         {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-5">
-          {/* Card 1 */}
-          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
-              Verify your email
-            </h2>
-            <p className="text-gray-600">
-              Verifying mail is required to hire you
-            </p>
-            <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
-              Verify
-            </button>
-          </div>
+{/* Cards Section */}
+<div className="m-6"> {/* Added margin to the container */}
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-5">
+    {/* Card 1 */}
+    <div className="relative bg-white p-6 rounded-md shadow-md hover:shadow-lg transition h-[15rem]"> {/* Increased height of the card */}
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Verify your email
+      </h2>
+      <p className="text-gray-600">
+        Verifying mail is required to hire you
+      </p>
+      <button className="absolute bottom-4 left-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+        Verify
+      </button>
+    </div>
 
-          {/* Card 2 */}
-          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
-              View Profile
-            </h2>
-            <p className="text-gray-600">
-              Update your profile, showcase your portfolio, and attract potential clients.
-            </p>
-            <button
-              className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
-              onClick={handleProfileClick}
+    {/* Card 2 */}
+    <div className="relative bg-white p-6 rounded-md shadow-md hover:shadow-lg transition h-[15rem]"> {/* Increased height of the card */}
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        View Profile
+      </h2>
+      <p className="text-gray-600">
+        Update your profile, showcase your portfolio, and attract potential clients.
+      </p>
+      <button
+        className="absolute bottom-4 left-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+        onClick={handleProfileClick}
+      >
+        Go to Profile
+      </button>
+    </div>
+
+    {/* Card 3 */}
+    <div className="relative bg-white p-6 rounded-md shadow-md hover:shadow-lg transition h-[15rem]"> {/* Increased height of the card */}
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Explore Jobs
+      </h2>
+      <p className="text-gray-600">
+        Browse through thousands of freelance opportunities and find the perfect match for your skills.
+      </p>
+      <button className="absolute bottom-4 left-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+        Explore Now
+      </button>
+    </div>
+
+    {/* Card 4 */}
+    <div className="relative bg-white p-6 rounded-md shadow-md hover:shadow-lg transition h-[15rem]"> {/* Increased height of the card */}
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        Test Skills
+      </h2>
+      <p className="text-gray-600">
+        Write the test and get recommended more
+      </p>
+      <button
+        className="absolute bottom-4 left-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+        onClick={() => router.push("/test")}
+      >
+        Test Now
+      </button>
+    </div>
+  </div>
+</div>
+
+      </div>
+<div className="p-6">
+  <h1 className="text-bold text-2xl mt-10">Recommend Clients</h1>
+  <div className="overflow-x-auto mt-5">
+    <div className="flex space-x-6 w-max">
+      {loading ? (
+        <p className="text-gray-500">Loading users...</p>
+      ) : users.length > 0 ? (
+        users.map((user, index) => (
+          <Link key={index} href={`/profile/${user._id}`} passHref>
+            <div
+              className="relative bg-white w-60 h-[10rem] flex flex-col justify-center items-center rounded-md shadow-md hover:scale-105 transition-transform cursor-pointer"
             >
-              Go to Profile
-            </button>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
-              Explore Jobs
-            </h2>
-            <p className="text-gray-600">
-              Browse through thousands of freelance opportunities and find the perfect match for your skills.
-            </p>
-            <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
-              Explore Now
-            </button>
-          </div>
-          {/* Card 4 */}
-          <div className="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
-              test skills
-            </h2>
-            <p className="text-gray-600">
-              Write the test and get Recommended more
-            </p>
-            <button className="mt-4 py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition" onClick={() => router.push("/test")} >
-              test Now
-            </button>
-          </div>
-        </div>
-      </div>
-
-
-      <div className="p-6">
-        <h1 className="text-bold text-2xl mt-10">Recommend Clients</h1>
-        <div className="overflow-x-auto mt-5">
-          <div className="flex space-x-6 w-max">
-            {loading ? (
-              <p className="text-gray-500">Loading users...</p>
-            ) : users.length > 0 ? (
-              users.map((user, index) => (
-                <Link key={index} href={`/profile/${user._id}`} passHref>
-                  <div
-                    className="bg-white w-60 h-[10rem] flex flex-col justify-center items-center rounded-md shadow-md hover:shadow-lg transition cursor-pointer"
-                  >
-                    {/* Display only the first name */}
-                    <h2 className="text-xl font-bold text-gray-800">
-                      {user.firstname.split(" ")[0]} {/* Extracts the first name */}
-                    </h2>
-                    <p className="text-gray-600">{user.details}</p>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <p className="text-gray-500">No users found</p>
-            )}
-          </div>
-        </div>
-      </div>
-
+              {/* Inner Border */}
+              <div
+                className="absolute inset-[6px] rounded-md border-2 border-orange-500 pointer-events-none"
+              ></div>
+              
+              {/* Content */}
+              <h2 className="text-xl font-bold text-gray-800 z-10">
+                {user.firstname.split(" ")[0]} {/* Extracts the first name */}
+              </h2>
+              <p className="text-gray-600 z-10">{user.details}</p>
+            </div>
+          </Link>
+        ))
+      ) : (
+        <p className="text-gray-500">No users found</p>
+      )}
+    </div>
+  </div>
+</div>
 
 {/* Search by Category Section */}
 <div className="p-6">
@@ -293,4 +303,3 @@ export default function Home() {
     </div >
   );
 }
-
