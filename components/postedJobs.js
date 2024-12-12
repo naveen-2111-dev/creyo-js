@@ -14,75 +14,27 @@ const StartWork = () => {
   const router = useRouter(); // Initialize router
 
   useEffect(() => {
-    // Fetch the data from the API when the component mounts
     const fetchJobs = async () => {
+      console.log('Fetching jobs with token:', token);  // Debugging token value
       try {
-        const response = await fetch('/api/jobs/retrieveJob');
+        const response = await fetch('/api/client/GetuserPost');
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
         }
         const data = await response.json();
-        setJobs(data); // Set the fetched jobs data to the state
+        setJobs(data);
+        console(data)
       } catch (err) {
-        setError(err.message); // Set any error to the state
+        setError(err.message);
+        console.error(err); // Log the error for more details
       } finally {
-        setLoading(false); // Set loading state to false once data is fetched
+        setLoading(false);
       }
     };
-
-    fetchJobs(); // Call the function to fetch the data
-  }, []); // Empty dependency array to fetch data only once when the component mounts
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-        <p>Loading...</p> {/* Show loading text */}
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-        <p>Error: {error}</p> {/* Display any error */}
-      </div>
-    );
-  }
-
-  const handleStartBidding = async (jobId) => {
-  const token = Cookies.get('accessToken');
-
-  if (!token) {
-    console.error('Token not found');
-    return;
-  }
-
-  try {
-    const response = await fetch(`/api/check-role?jobId=${jobId}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to check role: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    if (data.role === 'client') {
-      alert("Hi client!");
-    } else {
-      router.push(`/room/${jobId}`);
-    }
-  } catch (error) {
-    console.error('Error checking role:', error);
-    // Handle the error, e.g., display an error message to the user
-    alert('An error occurred. Please try again later.');
-  }
-};
-
+    fetchJobs();
+  }, [token]);
+  // Empty dependency array to fetch data only once when the component mounts
+  
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Jobs Section */}

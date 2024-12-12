@@ -1,18 +1,18 @@
 import "tailwindcss/tailwind.css";
 import { MailIcon, PhoneIcon, CreditCardIcon } from '@heroicons/react/outline';
 import Navbar from "@/components/NavBar";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import PostedJobs from '@/components/postedJobs';
 import FetchBid from "@/components/fetchBid";
+import PostedJobs from "@/components/postedJobs"
 
 export default function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [mail, setMail] = useState("");
   const [name, setName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   useEffect(() => {
     const checkLoginStatus = () => {
       try {
@@ -63,7 +63,7 @@ export default function Home() {
   }, [isLoggedIn, mail]);
 
 
-  const [role, setRole] = useState(""); 
+  const [role, setRole] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     skill: "",
@@ -335,7 +335,7 @@ export default function Home() {
                 </div>
                 <div>
                   <label htmlFor="link" className="block text-sm font-medium text-gray-700">
-                    Reference Link
+                    Reference Link [optional]
                   </label>
                   <input
                     type="url"
@@ -382,6 +382,7 @@ export default function Home() {
       {/* Jobs Section */}
       <div className=" w-3/4">
         <FetchBid />
+        <PostedJobs />
 
 
       </div>
